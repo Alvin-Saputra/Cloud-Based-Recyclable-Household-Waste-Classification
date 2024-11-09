@@ -6,23 +6,23 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#1C1C1C</color>
+    <color name="white">#F9F9F9</color>
 
     <!-- Base Color -->
-    <color name="base_color">#7BC118</color>
+    <color name="base_color_600">#7BC118</color>
 
     <!-- Gradation with White -->
-    <color name="base_color_white_10">#88C72F</color>
-    <color name="base_color_white_20">#95CD46</color>
-    <color name="base_color_white_30">#A3D45D</color>
-    <color name="base_color_white_40">#B0DA74</color>
-    <color name="base_color_white_50">#BDE08B</color>
+    <color name="base_color_500">#88C72F</color>
+    <color name="base_color_400">#95CD46</color>
+    <color name="base_color_300">#A3D45D</color>
+    <color name="base_color_200">#B0DA74</color>
+    <color name="base_color_100">#BDE08B</color>
 
     <!-- Gradation with Black -->
-    <color name="base_color_black_10">#6FAE16</color>
-    <color name="base_color_black_20">#629A13</color>
-    <color name="base_color_black_30">#568711</color>
-    <color name="base_color_black_40">#4A740E</color>
-    <color name="base_color_black_50">#3D600C</color>
+    <color name="base_color_700">#6FAE16</color>
+    <color name="base_color_800">#629A13</color>
+    <color name="base_color_900">#568711</color>
+    <color name="base_color_1000">#4A740E</color>
+    <color name="base_color_black_1100">#3D600C</color>
 </resources>
