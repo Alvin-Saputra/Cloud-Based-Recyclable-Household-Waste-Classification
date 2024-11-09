@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.cloud_based_recyclable_household_waste_classification.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_saved"
+        android:name="com.example.cloud_based_recyclable_household_waste_classification.ui.saved.SavedFragment"
+        android:label="@string/title_saved"
+        tools:layout="@layout/saved_fragment" />
 
     <fragment
         android:id="@+id/navigation_notifications"
