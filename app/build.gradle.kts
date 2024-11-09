@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.cloud_based_recyclable_household_waste_classification"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.cloud_based_recyclable_household_waste_classification"
