@@ -10,19 +10,19 @@
     <color name="white">#F9F9F9</color>
 
     <!-- Base Color -->
-    <color name="base_color_600">#7BC118</color>
+    <color name="base_color_600">#40C118</color>
 
     <!-- Gradation with White -->
-    <color name="base_color_500">#88C72F</color>
-    <color name="base_color_400">#95CD46</color>
-    <color name="base_color_300">#A3D45D</color>
-    <color name="base_color_200">#B0DA74</color>
-    <color name="base_color_100">#BDE08B</color>
+    <color name="base_color_500">#53C72F</color>
+    <color name="base_color_400">#66CD46</color>
+    <color name="base_color_300">#79D35D</color>
+    <color name="base_color_200">#8CDA74</color>
+    <color name="base_color_100">#A0E08C</color>
 
     <!-- Gradation with Black -->
-    <color name="base_color_700">#6FAE16</color>
-    <color name="base_color_800">#629A13</color>
-    <color name="base_color_900">#568711</color>
-    <color name="base_color_1000">#4A740E</color>
-    <color name="base_color_black_1100">#3D600C</color>
+    <color name="base_color_700">#3AAE16</color>
+    <color name="base_color_800">#339A13</color>
+    <color name="base_color_900">#46952E</color>
+    <color name="base_color_1000">#26740E</color>
+    <color name="base_color_1100">#20600C</color>
 </resources>
