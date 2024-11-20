@@ -1,6 +1,7 @@
 package com.example.cloud_based_recyclable_household_waste_classification.ui.home
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -9,18 +10,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.cloud_based_recyclable_household_waste_classification.DetailActivity
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.FragmentHomeBinding
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.getImageUri
 
 class HomeFragment : Fragment() {
-
+    private lateinit var viewModel: HomeViewModel
     companion object {
         private const val REQUIRED_PERMISSION_CAMERA = Manifest.permission.CAMERA
         private const val REQUIRED_PERMISSION_WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -82,16 +83,15 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.progressBar.visibility = View.GONE
+
         if (!allPermissionsGranted()) {
             requestPermissionLauncher.launch(
                 arrayOf(REQUIRED_PERMISSION_CAMERA, REQUIRED_PERMISSION_WRITE_EXTERNAL_STORAGE, REQUIRED_PERMISSION_READ_EXTERNAL_STORAGE, REQUIRED_PERMISSION_READ_MEDIA_IMAGES)
             )
         }
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         binding.buttonGallery.setOnClickListener{
             startGallery()
@@ -99,6 +99,41 @@ class HomeFragment : Fragment() {
 
         binding.buttonCamera.setOnClickListener{
             startCamera()
+        }
+
+        binding.buttonClassify.setOnClickListener{
+            viewModel.uploadImage(requireContext())
+        }
+
+
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { loadingState ->
+            if (loadingState == true) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
+        viewModel.isSuccess.observe(viewLifecycleOwner){ isSuccess ->
+
+            if(isSuccess == true){
+                viewModel.classificationResult.observe(viewLifecycleOwner){ result ->
+
+                    val classificationres = result
+                    Log.d("HomeFragment", "Hasil Klasifikasi: $classificationres")
+
+                    result?.let{
+                        val intent = Intent(requireContext(), DetailActivity::class.java)
+                        intent.putExtra(DetailActivity.KEY_PROB, result.probability)
+                        intent.putExtra(DetailActivity.KEY_CLASSNAME, result.className)
+                        intent.putExtra(DetailActivity.KEY_URI, viewModel.currentImageUri)
+                        startActivity(intent)
+                    }
+
+                }
+            }
+
         }
 
         return root
@@ -113,8 +148,8 @@ class HomeFragment : Fragment() {
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) {
-//            currentImageUri = uri
-//            showImage()
+            viewModel.currentImageUri = uri
+            showImage()
 
         } else {
             Log.d("Photo Picker", "No media selected")
@@ -123,7 +158,7 @@ class HomeFragment : Fragment() {
 
 
     private fun startCamera() {
-        currentImageUri = getImageUri(requireContext())
+        viewModel.currentImageUri = getImageUri(requireContext())
         launcherIntentCamera.launch(currentImageUri)
     }
 
@@ -131,7 +166,14 @@ class HomeFragment : Fragment() {
         ActivityResultContracts.TakePicture()
     ) { isSuccess ->
         if (isSuccess) {
-//            showImage()
+            showImage()
+        }
+    }
+
+    private fun showImage() {
+        viewModel.currentImageUri?.let { uri->
+            Log.d("Image URI", "showImage: $uri")
+            binding.imageView.setImageURI(uri)
         }
     }
 
