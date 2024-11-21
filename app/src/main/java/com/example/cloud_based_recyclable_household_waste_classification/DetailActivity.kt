@@ -84,7 +84,7 @@ class DetailActivity : AppCompatActivity() {
                 binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
                 binding.tvOutcomeDescription.text = getString(R.string.biological_recycling_outcome)
             }
-            "brown_glass" -> {
+            "brown-glass" -> {
                 // Set the headers and descriptions for brown glass waste
                 binding.tvDescriptionHeader.text = getString(R.string.description_header)
                 binding.tvWasteDescription.text = getString(R.string.brown_glass_description)
