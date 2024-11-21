@@ -55,17 +55,89 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp" />
 
+        <!-- Description Section -->
+        <TextView
+            android:id="@+id/tv_description_header"
+            style="@style/Heading3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description_header"
+            app:layout_constraintTop_toBottomOf="@id/tv_waste_class"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/tv_waste_description"
             style="@style/Parahraph_xm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@string/waste_description"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_waste_class" />
+            app:layout_constraintTop_toBottomOf="@id/tv_description_header" />
+
+        <!-- Method Section -->
+        <TextView
+            android:id="@+id/tv_method_header"
+            style="@style/Heading3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/method_header"
+            app:layout_constraintTop_toBottomOf="@id/tv_waste_description"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_method_description"
+            style="@style/Parahraph_xm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/recycling_method"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_method_header" />
+
+        <!-- Benefits Section -->
+        <TextView
+            android:id="@+id/tv_benefits_header"
+            style="@style/Heading3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/benefits_header"
+            app:layout_constraintTop_toBottomOf="@id/tv_method_description"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_benefits_description"
+            style="@style/Parahraph_xm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/recycling_benefits"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_benefits_header" />
+
+        <!-- Outcome Section -->
+        <TextView
+            android:id="@+id/tv_outcome_header"
+            style="@style/Heading3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/outcome_header"
+            app:layout_constraintTop_toBottomOf="@id/tv_benefits_description"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_outcome_description"
+            style="@style/Parahraph_xm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/recycling_outcome"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_outcome_header" />
 
         <Button
             android:id="@+id/btn_return"
@@ -78,7 +150,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_save_container"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_waste_description" />
+            app:layout_constraintTop_toBottomOf="@id/tv_outcome_description" />
 
         <ImageButton
             android:id="@+id/btn_save_container"

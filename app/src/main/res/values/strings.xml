@@ -8,13 +8,19 @@
     <string name="waste_image">Waste Image</string>
     <string name="waste_name">Nama Limbah</string>
     <string name="waste_class">Kelas Limbah</string>
-    <string name="waste_description">Deskripsi Limbah</string>
+
     <string name="return_button">Return</string>
     <string name="save_button">Save</string>
     <string name="percentage">0%</string>
 
+    <!-- Header Strings -->
+    <string name="description_header">Description</string>
+    <string name="method_header">Recycling Method</string>
+    <string name="benefits_header">Recycling Benefits</string>
+    <string name="outcome_header">Recycling Outcome</string>
+
     <!-- Battery -->
-    <string name="battery_description">Baterai adalah limbah elektronik yang berasal dari perangkat penyimpanan energi, seperti baterai primer (sekali pakai) dan sekunder (dapat diisi ulang). Jika tidak dikelola dengan benar, baterai bekas dapat mencemari lingkungan karena mengandung bahan berbahaya seperti merkuri, kadmium, dan timbal. Selain itu, baterai bekas dapat meningkatkan volume limbah berbahaya di TPA, mengancam kesehatan manusia, dan merusak ekosistem. Namun, baterai juga menyimpan material berharga seperti lithium dan kobalt yang dapat didaur ulang, sehingga pengelolaan limbah baterai yang tepat sangat penting untuk mengurangi dampaknya terhadap lingkungan.</string>
+    <string name="battery_description">Baterai adalah limbah elektronik dari perangkat penyimpanan energi yang mengandung bahan berbahaya seperti merkuri dan timbal. Baterai bekas dapat meningkatkan volume limbah berbahaya di TPA, mengancam kesehatan manusia, dan merusak ekosistem.</string>
 
     <string name="battery_recycling_method">Baterai bekas sebaiknya dibawa ke tempat daur ulang khusus atau drop box di toko elektronik. Proses daur ulang meliputi pengumpulan, pemisahan, penghancuran, dan ekstraksi material berharga. Material residu diolah lebih lanjut untuk pembuangan aman atau dimanfaatkan sebagai bahan lain.</string>
 
@@ -25,18 +31,30 @@
     <!-- Biological -->
     <string name="biological_description">Limbah organik yang berasal dari makhluk hidup, seperti sisa makanan, daun, dan kotoran hewan. Limbah ini mudah terurai secara alami oleh mikroorganisme. Dampak yang akan terjadi apabila berlebihan adalah pencemaran lingkungan, risiko kesehatan, penurunan kualitas tanah, dan peningkatan volume limbah.</string>
 
-    <string name="biological_recycling_method">Kumpulkan limbah organik dan tempatkan limbah di wadah/lubang tanah. Pastikan ada campuran bahan berwarna “coklat” seperti daun kering dan “hijau” seperti sisa makanan. Aduk berkala untuk menjaga aerasi. Tunggu beberapa minggu untuk mendapatkan hasilnya.</string>
+    <string name="biological_recycling_method">
+        • Kumpulkan limbah organik dan tempatkan limbah di wadah/lubang tanah.\n
+        • Pastikan ada campuran bahan berwarna “coklat” seperti daun kering dan “hijau” seperti sisa makanan.\n
+        • Aduk berkala untuk menjaga aerasi.\n
+        • Tunggu beberapa minggu untuk mendapatkan hasilnya.
+    </string>
 
     <string name="biological_recycling_benefits">Mengurangi limbah yang berakhir di Tempat Pembuangan Akhir (TPA) dan menghasilkan pupuk organik.</string>
 
     <string name="biological_recycling_outcome">Pupuk kompos.</string>
 
     <!-- Brown Glass -->
-    <string name="brown_glass_description">Brown glass adalah limbah kaca berwarna coklat yang sering berasal dari botol minuman, kemasan kosmetik, atau wadah obat-obatan. Jika tidak didaur ulang, limbah ini dapat menumpuk di TPA karena kaca memerlukan waktu yang sangat lama untuk terurai secara alami. Penumpukan brown glass berkontribusi pada peningkatan volume sampah dan mencemari lingkungan. Namun, karena sifatnya yang tahan lama dan dapat didaur ulang tanpa kehilangan kualitas, pengelolaan limbah brown glass secara benar dapat mengurangi dampaknya serta mendukung keberlanjutan lingkungan.</string>
+    <string name="brown_glass_description">Brown glass adalah limbah kaca berwarna coklat dari botol minuman, kemasan kosmetik, atau wadah obat yang sulit terurai di TPA dan mencemari lingkungan. Namun, karena sifatnya yang tahan lama dan dapat didaur ulang tanpa kehilangan kualitas, daur ulang yang tepat dapat mengurangi dampaknya dan mendukung keberlanjutan lingkungan.</string>
 
-    <string name="brown_glass_recycling_method">Brown glass dapat didaur ulang dengan mengumpulkan botol atau wadah kaca bekas, lalu membawanya ke tempat pengumpulan sampah daur ulang yang disediakan oleh pemerintah atau perusahaan. Proses daur ulang kaca melibatkan pemisahan kaca berdasarkan warna, penghancuran menjadi pecahan kecil, dan kemudian peleburan untuk membentuk produk baru. Beberapa daerah di Indonesia juga menyediakan titik pengumpulan khusus untuk kaca bekas.</string>
+    <string name="brown_glass_recycling_method">
+        Brown glass dapat didaur ulang dengan membawanya ke tempat daur ulang khusus atau drop box. Proses daur ulang brown glass meliputi:
+        • Kumpulkan botol atau wadah kaca bekas dan pisahkan dari bahan lain seperti logam dan plastik.\n
+        • Cuci kaca untuk menghilangkan sisa cairan, label, dan kotoran lainnya.\n
+        • Pisahkan kaca berdasarkan warna, pastikan hanya brown glass yang diproses.\n
+        • Pecahkan kaca menjadi potongan kecil (cullet).\n
+        • Lelehkan cullet di tungku untuk menghasilkan kaca cair dan bentuk menjadi produk baru.
+    </string>
 
-    <string name="brown_glass_recycling_benefits">Daur ulang brown glass membantu mengurangi limbah kaca yang menumpuk di TPA, menghemat energi, serta mengurangi kebutuhan untuk menambang bahan baku baru. Proses daur ulang juga mengurangi dampak lingkungan, karena kaca adalah bahan yang memerlukan waktu sangat lama untuk terurai di alam.</string>
+    <string name="brown_glass_recycling_benefits">Mengurangi limbah di TPA, menghemat energi, mengurangi kebutuhan bahan baku baru seperti pasir silika, dan mengurangi dampak lingkungan.</string>
 
     <string name="brown_glass_recycling_outcome">Botol minuman baru, wadah farmasi seperti botol sirup obat, kemasan kosmetik seperti krim atau minyak esensial, gelas pelindung lampu, serta produk dekoratif seperti mosaik, ubin kaca coklat, atau permukaan meja.</string>
 
@@ -52,25 +70,43 @@
     <!-- Clothes -->
     <string name="clothes_description">Clothes adalah sisa-sisa bahan atau produk pembuatan pakaian yang sudah tidak terpakai, rusak, atau lama tidak digunakan. Limbah pakaian yang tidak terolah dapat menghasilkan gas rumah kaca (seperti metana) saat membusuk di tempat pembuangan akhir. Bahan sintetis seperti poliester juga mencemari lingkungan karena membutuhkan ratusan tahun untuk terurai, sekaligus berpotensi melepaskan mikroplastik ke ekosistem.</string>
 
-    <string name="clothes_recycling_method">Limbah pakaian dapat diubah menjadi produk baru seperti kain lap, material isolasi, atau benang daur ulang. Alternatif lain adalah mendonasikan pakaian layak pakai atau menggunakannya kembali untuk proyek DIY.</string>
+    <string name="clothes_recycling_method">
+        Limbah pakaian dapat diubah menjadi produk baru seperti kain lap, material isolasi, atau benang daur ulang. Alternatif lain adalah mendonasikan pakaian layak pakai atau menggunakannya kembali untuk proyek DIY. Proses daur ulang pakaian secara umum meliputi:\n
+        • Kumpulkan pakaian bekas dan pisahkan berdasarkan kondisi (pakaian layak pakai dan yang sudah rusak).\n
+        • Cuci pakaian untuk menghilangkan kotoran atau sisa bahan kimia yang mungkin ada.\n
+        • Pisahkan bahan-bahan pakaian, seperti kain katun, wol, atau sintetis yang dapat diproses secara terpisah.\n
+        • Hancurkan atau potong pakaian menjadi serat atau bahan yang lebih kecil. Serat kain dapat diproses menjadi bahan isolasi atau kain lap.\n
+        • Bentuk menjadi produk baru.
+    </string>
 
     <string name="clothes_recycling_benefits">Mengurangi limbah tekstil, emisi karbon, dan konsumsi sumber daya seperti air dan energi yang diperlukan dalam produksi tekstil baru.</string>
 
     <string name="clothes_recycling_outcome">Kain lap, benang daur ulang, bahan isolasi, karpet, atau produk inovatif lainnya.</string>
 
     <!-- Green Glass -->
-    <string name="green_glass_description">Green glass adalah limbah kaca berwarna hijau yang umumnya berasal dari botol minuman seperti anggur, minuman bersoda, atau minuman beralkohol lainnya. Jika tidak dikelola dengan baik, green glass dapat menumpuk di TPA karena memerlukan waktu sangat lama untuk terurai secara alami. Namun, karena sifatnya yang tahan lama dan dapat didaur ulang tanpa kehilangan kualitas, pengelolaan yang tepat dapat membantu mengurangi dampaknya dan mendukung keberlanjutan lingkungan.</string>
+    <string name="green_glass_description">Green glass adalah limbah kaca berwarna hijau dari botol minuman seperti anggur, minuman bersoda, atau minuman beralkohol lainnya yang memerlukan waktu lama untuk terurai di TPA. Namun, karena sifatnya yang tahan lama dan dapat didaur ulang tanpa kehilangan kualitas, daur ulang yang tepat dapat mengurangi dampaknya dan mendukung keberlanjutan lingkungan.</string>
 
-    <string name="green_glass_recycling_method">Green glass dapat didaur ulang dengan cara mengumpulkan botol atau wadah green glass bekas dan membawanya ke tempat pengumpulan sampah daur ulang yang disediakan oleh pemerintah atau perusahaan. Proses daur ulang kaca melibatkan pemisahan kaca berdasarkan warna, penghancuran menjadi pecahan kecil, dan kemudian peleburan untuk membentuk produk baru. Beberapa daerah di Indonesia juga menyediakan titik pengumpulan khusus untuk kaca bekas.</string>
+    <string name="green_glass_recycling_method">
+        Green glass dapat didaur ulang dengan membawanya ke tempat daur ulang khusus atau drop box. Proses daur ulang green glass meliputi:\n
+        • Kumpulkan botol atau wadah kaca bekas dan pisahkan dari bahan lain seperti logam dan plastik.\n
+        • Cuci kaca untuk menghilangkan sisa cairan, label, dan kotoran lainnya.\n
+        • Pisahkan kaca berdasarkan warna, pastikan hanya green glass yang diproses.\n
+        • Pecahkan kaca menjadi potongan kecil (cullet).\n
+        • Lelehkan cullet di tungku untuk menghasilkan kaca cair dan bentuk menjadi produk baru.
+    </string>
 
-    <string name="green_glass_recycling_benefits">Daur ulang green glass dapat membantu mengurangi limbah kaca yang menumpuk di TPA, menghemat energi dalam produksi kaca baru, serta mengurangi kebutuhan untuk menambang bahan baku baru seperti pasir silika. Selain itu, proses daur ulang kaca ini juga mengurangi dampak lingkungan secara signifikan, karena kaca membutuhkan waktu yang sangat lama untuk terurai di alam.</string>
+    <string name="green_glass_recycling_benefits">Mengurangi limbah di TPA, menghemat energi, mengurangi kebutuhan bahan baku baru seperti pasir silika, dan mengurangi dampak lingkungan.</string>
 
     <string name="green_glass_recycling_outcome">Botol minuman anggur atau soda, wadah farmasi atau kosmetik seperti serum dan krim, serta material dekoratif seperti mosaik kaca, ubin kaca hijau, atau pernak-pernik hiasan.</string>
 
     <!-- Metal -->
     <string name="metal_description">Logam meliputi berbagai jenis seperti aluminium, baja, tembaga, dan lainnya, yang sering digunakan dalam produk-produk industri dan konsumsi. Limbah logam membutuhkan waktu yang sangat lama untuk terurai secara alami dan dapat mencemari lingkungan jika tidak dikelola dengan benar.</string>
 
-    <string name="metal_recycling_method">Pisahkan logam berdasarkan jenisnya (aluminium, besi, tembaga, dll.),Cuci logam untuk menghilangkan kotoran atau bahan kimia,Lelehkan logam furnace untuk menghilangkan kotoran,Cetak ulang logam cair menjadi bahan baru atau produk logam lainnya.</string>
+    <string name="metal_recycling_method">
+    • Pisahkan logam berdasarkan jenisnya (aluminium, besi, tembaga, dll.)\n
+    • Cuci logam untuk menghilangkan kotoran atau bahan kimia.\n
+    • Lelehkan logam furnace untuk menghilangkan kotoran.\n
+    • Cetak ulang logam cair menjadi bahan baru atau produk logam lainnya.</string>
 
     <string name="metal_recycling_benefits">Menghemat energi yang sangat besar (misalnya, daur ulang aluminium menghemat 95% energi dibandingkan dengan memproduksi aluminium baru), mengurangi polusi, dan mengurangi kebutuhan akan penambangan logam baru.</string>
 
@@ -79,7 +115,12 @@
     <!-- Paper -->
     <string name="paper_description">Paper adalah limbah yang berasal dari bahan berbasis serat kayu, seperti buku, surat kabar, atau kemasan. Jika tidak dikelola dengan baik, sampah kertas akan menumpuk di tempat pembuangan akhir (TPA), berkontribusi pada pencemaran lingkungan, dan mengakibatkan pemborosan sumber daya alam.</string>
 
-    <string name="paper_recycling_method">Pengumpulan Kertas bekas dikumpulkan dari rumah tangga, sekolah, kantor, dan tempat usaha. Pemilahan Kertas dipilah berdasarkan jenisnya, misalnya kertas putih, kertas koran, atau karton, serta dipisahkan dari bahan asing seperti staples, plastik, atau lem. Pengolahan di Pusat Daur Ulang Kertas dihancurkan menggunakan air dan bahan kimia untuk membentuk bubur kertas (pulp). Bahan yang tidak diinginkan, seperti tinta atau pewarna, dihilangkan melalui proses penyaringan atau deinking. Pencetakan Ulang Bubur kertas yang bersih dicetak ulang menjadi produk baru seperti kertas tulis, karton, atau produk lain berbasis kertas.</string>
+    <string name="paper_recycling_method">
+    • Kertas bekas dikumpulkan dari rumah tangga, sekolah, kantor, atau tempat usaha.\n
+    • Kertas dipilah berdasarkan jenisnya, misalnya kertas putih, kertas koran, atau karton, serta dipisahkan dari bahan asing seperti staples, plastik, atau lem.\n
+    • Kertas dihancurkan menggunakan air dan bahan kimia untuk membentuk bubur kertas (pulp). Bahan yang tidak diinginkan, seperti tinta atau pewarna, dihilangkan melalui proses penyaringan atau deinking.\n
+    • Bubur kertas yang bersih dicetak ulang menjadi produk baru seperti kertas tulis, karton, atau produk lain berbasis kertas.</string>
+
 
     <string name="paper_recycling_benefits">Mengurangi penebangan pohon, karena kertas daur ulang dapat menggantikan kebutuhan bahan baku dari kayu.</string>
 
@@ -87,21 +128,56 @@
 
 
     <!-- Plastic -->
-    <string name="plastic_description">Plastik adalah bahan sintetis yang sangat umum digunakan dalam kemasan, peralatan rumah tangga dan banyak produk lainnya.</string>
+    <string name="plastic_description">Plastik adalah bahan sintetis yang sangat umum digunakan dalam kemasan, peralatan rumah tangga dan banyak produk lainnya, namun juga menjadi salah satu limbah yang paling sulit terurai di alam. Limbah plastik dapat mencemari lingkungan, termasuk laut dan tanah, serta mengancam satwa liar.</string>
 
-    <string name="plastic_recycling_method">Pisahkan plastik berdasarkan jenisnya (misalnya PET, HDPE, dll.). Cuci plastik untuk menghilangkan kotoran dan bahan kimia. Hancurkan plastik menjadi butiran kecil. Lelehkan plastik dan bentuk ulang menjadi produk baru.</string>
+    <string name="plastic_recycling_method">
+    • Pisahkan plastik berdasarkan jenisnya (misalnya PET, HDPE, dll.)\n
+    • Cuci plastik untuk menghilangkan kotoran dan bahan kimia.\n
+    • Hancurkan plastik menjadi butiran kecil.\n
+    • Leburkan plastik dan bentuk ulang menjadi produk baru.</string>
+
 
     <string name="plastic_recycling_benefits">Mengurangi volume sampah plastik yang mencemari lingkungan, mengurangi polusi plastik di laut dan tanah, serta mengurangi kebutuhan akan produksi plastik baru dari bahan baku minyak bumi.</string>
 
     <string name="plastic_recycling_outcome">Produk plastik baru seperti tas belanja, botol, dan bahan bangunan.</string>
 
     <!-- White Glass -->
-    <string name="white_glass_description">White Glass adalah kaca bening yang sering digunakan untuk botol, gelas, dan jendela. Jenis kaca ini dapat didaur ulang sepenuhnya tanpa kehilangan kualitasnya, menjadikannya bahan yang sangat berharga untuk didaur ulang.</string>
+    <string name="white_glass_description">White glass adalah kaca bening yang sering digunakan untuk botol, gelas, dan jendela. Jenis kaca ini dapat didaur ulang sepenuhnya tanpa kehilangan kualitasnya, menjadikannya bahan yang sangat berharga untuk didaur ulang.</string>
 
-    <string name="white_glass_recycling_method">Kumpulkan kaca bekas dan pisahkan dari bahan lain seperti logam dan plastik. Cuci kaca untuk menghilangkan sisa makanan, cairan, dan label. Pecahkan kaca menjadi potongan kecil yang disebut cullet. Lelehkan cullet di tungku untuk menghasilkan kaca cair. Bentuk kaca cair menjadi produk baru speerti botol, gelas, atau lebaran kaca.</string>
+    <string name="white_glass_recycling_method">
+    White glass dapat didaur ulang dengan membawanya ke tempat daur ulang khusus atau drop box. Proses daur ulang white glass meliputi:\n
+    •   Kumpulkan kaca bekas dan pisahkan dari bahan lain seperti logam dan plastik.\n
+    •   Cuci kaca untuk menghilangkan sisa makanan, cairan, dan label.\n
+    •   Pisahkan kaca berdasarkan warna, pastikan hanya white glass yang diproses.\n
+    •   Pecahkan kaca menjadi potongan kecil yang disebut cullet.\n
+    •   Lelehkan cullet di tungku untuk menghasilkan kaca cair dan bentuk menjadi produk baru.</string>
 
-    <string name="white_glass_recycling_benefits">Menghemat energi yang diperlukan untuk memproduksi kaca baru, mengurangi kebutuhan akan bahan baku seperti pasir silika dan mengurangi limbah kaca yang membutuhkan waktu sangat lama untuk terurai.</string>
 
-    <string name="white_glass_recycling_outcome">Botol kaca baru, gelas, kaca jendela dan bahan konstruksi.</string>
+    <string name="white_glass_recycling_benefits">Menghemat energi yang diperlukan untuk memproduksi kaca baru, mengurangi kebutuhan akan bahan baku seperti pasir silika, dan mengurangi limbah kaca yang membutuhkan waktu sangat lama untuk terurai.</string>
+
+    <string name="white_glass_recycling_outcome">Botol kaca baru, gelas, kaca jendela, dan bahan konstruksi.</string>
+
+    <!-- Shoes -->
+    <string name="shoes_description">
+    Sepatu adalah produk yang terbuat dari berbagai bahan seperti karet, kain, kulit, dan plastik. Sepatu yang sudah tidak digunakan sering menjadi limbah karena sulit terurai secara alami.</string>
+
+    <string name="shoes_recycling_method">
+    • Pisahkan sepatu yang masih layak pakai untuk didonasikan atau dijual kembali.\n
+    • Sepatu yang tidak layak pakai dibongkar menjadi komponen seperti karet, kain, dan plastik.\n
+    • Karet dari sol sepatu dilebur dan dibentuk kembali untuk produk seperti alas lantai atau bahan konstruksi.\n
+    • Kain dan bahan sintetis diproses menjadi serat yang digunakan untuk isolasi atau tekstil baru.</string>
+
+    <string name="shoes_recycling_benefits">
+    Daur ulang sepatu membantu mengurangi limbah yang sulit terurai di TPA. Beberapa bagian sepatu, seperti sol karet atau bahan kain, dapat digunakan kembali untuk membuat produk baru, menghemat sumber daya, dan mengurai polusi.</string>
+
+    <string name="shoes_recycling_outcome">
+    Karet daur ulang untuk alas lantai, bahan konstruksi atau peralatan olahraga, serta serat tekstil untuk pembuatan karpet atau bahan insulasi.</string>
+
+
+    <!-- Deskripsi Limbah Umum -->
+    <string name="waste_description">Waste is any material that is discarded</string>
+    <string name="recycling_method">Recycling methods vary for different materials</string>
+    <string name="recycling_benefits">Recycling helps conserve natural resources</string>
+    <string name="recycling_outcome">The outcome of recycling is a cleaner environment</string>
 
 </resources>
