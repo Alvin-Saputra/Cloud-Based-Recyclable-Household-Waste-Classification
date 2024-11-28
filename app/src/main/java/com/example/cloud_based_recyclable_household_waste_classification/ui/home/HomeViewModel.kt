@@ -6,7 +6,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserModel
+import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserRepository
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.ApiConfig
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.ClassificationResponse
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.uriToFile
@@ -14,12 +17,11 @@ import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val repository: UserRepository): ViewModel() {
 
     var currentImageUri: Uri? = null
 
@@ -38,6 +40,10 @@ class HomeViewModel : ViewModel() {
 
     private val _classificationResult = MutableLiveData<ClassificationResponse?>()
     val classificationResult = _classificationResult
+
+    fun getSession(): LiveData<UserModel> {
+        return repository.getSession().asLiveData()
+    }
 
     fun uploadImage(context: Context) {
         currentImageUri?.let { uri ->

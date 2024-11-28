@@ -13,15 +13,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.example.cloud_based_recyclable_household_waste_classification.DetailActivity
+import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserViewModelFactory
+import com.example.cloud_based_recyclable_household_waste_classification.ui.detail.DetailActivity
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.FragmentHomeBinding
+import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.getImageUri
 
 class HomeFragment : Fragment() {
-    private lateinit var viewModel: HomeViewModel
+//    private lateinit var viewModel: HomeViewModel
     companion object {
         private const val REQUIRED_PERMISSION_CAMERA = Manifest.permission.CAMERA
         private const val REQUIRED_PERMISSION_WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -29,7 +33,14 @@ class HomeFragment : Fragment() {
         private const val REQUIRED_PERMISSION_READ_MEDIA_IMAGES = Manifest.permission.READ_MEDIA_IMAGES
     }
 
+
+    private val viewModel by viewModels<HomeViewModel> {
+        UserViewModelFactory.getInstance(requireContext())
+    }
+
     private var _binding: FragmentHomeBinding? = null
+
+    private var token = ""
 
     private var currentImageUri: Uri? = null
 
@@ -77,11 +88,22 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+
+//        val homeViewModel =
+//            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+
+        viewModel.getSession().observe(viewLifecycleOwner) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
+                requireActivity().finish()
+            } else {
+                token = "Bearer ${user.token}"
+            }
+        }
 
         binding.progressBar.visibility = View.GONE
 
@@ -91,7 +113,7 @@ class HomeFragment : Fragment() {
             )
         }
 
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+//        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         binding.buttonGallery.setOnClickListener{
             startGallery()
@@ -137,6 +159,10 @@ class HomeFragment : Fragment() {
         }
 
         return root
+    }
+
+    private fun finish() {
+        TODO("Not yet implemented")
     }
 
 

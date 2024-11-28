@@ -1,16 +1,20 @@
-package com.example.cloud_based_recyclable_household_waste_classification
+package com.example.cloud_based_recyclable_household_waste_classification.ui.detail
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import com.example.cloud_based_recyclable_household_waste_classification.ui.main.MainActivity
+import com.example.cloud_based_recyclable_household_waste_classification.R
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.ActivityDetailBinding
 import java.util.Locale
 
 class DetailActivity : AppCompatActivity() {
+
+    private lateinit var ViewModel: DetailViewModel
 
     companion object {
         const val KEY_PROB = "key_prob"
@@ -29,6 +33,8 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        ViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+
         val bundle = intent.extras
         if (bundle != null) {
             imageUri = bundle.getParcelable(KEY_URI)
@@ -46,6 +52,14 @@ class DetailActivity : AppCompatActivity() {
             intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        ViewModel.getArticles()
+
+        ViewModel.articles.observe(this){ articles ->
+            var result = articles
+
+        }
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

@@ -21,6 +21,13 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+
+    <style name="HeadingXL">
+        <item name="android:textSize">40dp</item>
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="Heading2">
         <item name="android:textSize">20dp</item>
         <item name="fontFamily">@font/inter_bold</item>

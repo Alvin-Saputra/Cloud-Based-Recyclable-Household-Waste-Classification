@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginActivity">
+
+
+
+        <ProgressBar
+            android:id="@+id/progressBarLogin"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomEmailTextInputLayout
+            android:id="@+id/textInputEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="24dp"
+            android:alpha="0"
+            app:layout_constraintBottom_toTopOf="@+id/textInputPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/second_textViewTitleLogin"
+            tools:alpha="100">
+
+            <com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomEmailTextInputEditText
+                android:id="@+id/ed_login_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomEmailTextInputLayout>
+
+        <com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomPasswordTextInputLayout
+            android:id="@+id/textInputPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="24dp"
+            android:alpha="0"
+            tools:alpha = "100"
+            app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:passwordToggleEnabled="true">
+
+            <com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomPasswordTextInputEditText
+                android:id="@+id/ed_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomPasswordTextInputLayout>
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/AllCenterButtonStyles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/btnLogin"
+            android:alpha="0"
+            tools:alpha = "100"
+            app:layout_constraintBottom_toTopOf="@+id/textView_OrRegister"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+
+            android:id="@+id/textViewTitleLogin"
+            style="@style/HeadingXL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="128dp"
+            android:layout_marginBottom="24dp"
+            android:alpha="0"
+            android:text="@string/login_title"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textInputEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:alpha="100" />
+
+        <TextView
+
+            android:id="@+id/second_textViewTitleLogin"
+            style="@style/HeadingXL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:text="@string/second_login_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textViewTitleLogin"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleLogin"
+            tools:alpha="100" />
+
+        <TextView
+            android:id="@+id/textView_OrRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/or"
+            android:alpha="0"
+            tools:alpha = "100"
+            app:layout_constraintBottom_toTopOf="@+id/buttonGoRegister"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonGoRegister"
+            style="@style/AllCenterButtonStyles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:alpha="0"
+            android:text="@string/btnGoRegister"
+            android:textColor="@color/black"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btnLogin"
+            tools:alpha="100" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

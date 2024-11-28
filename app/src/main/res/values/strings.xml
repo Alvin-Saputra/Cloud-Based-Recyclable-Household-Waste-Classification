@@ -167,5 +167,10 @@
     <string name="recycling_method">Recycling methods vary for different materials</string>
     <string name="recycling_benefits">Recycling helps conserve natural resources</string>
     <string name="recycling_outcome">The outcome of recycling is a cleaner environment</string>
+    <string name="login_title">Hello,</string>
+    <string name="btnLogin">Login</string>
+    <string name="or">Or</string>
+    <string name="btnGoRegister">Register</string>
+    <string name="second_login_title">Welcome</string>
 
 </resources>
