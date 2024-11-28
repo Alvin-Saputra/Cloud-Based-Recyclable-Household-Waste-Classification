@@ -1,4 +1,4 @@
-package com.example.cloud_based_recyclable_household_waste_classification.data.remote
+package com.example.cloud_based_recyclable_household_waste_classification.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

@@ -17,7 +17,7 @@
         <item name="android:gravity">start|center_vertical</item>
         <item name="cornerRadius">24dp</item>
         <item name="fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:paddingVertical">14dp</item>
     </style>
 
@@ -27,7 +27,7 @@
         <item name="android:gravity">center|center_vertical</item>
         <item name="cornerRadius">24dp</item>
         <item name="fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:paddingVertical">14dp</item>
     </style>
 
@@ -38,23 +38,24 @@
 
     <style name="Parahraph_md">
         <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="Parahraph_sm">
         <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">14dp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Parahraph_xm">
         <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">12dp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Parahraph_xxm">
         <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">10dp</item>
+        <item name="android:textSize">10sp</item>
     </style>
+
 
 
 </resources>

@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity.RESULT_OK
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,6 +24,8 @@ import com.example.cloud_based_recyclable_household_waste_classification.ui.deta
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.FragmentHomeBinding
 import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.getImageUri
+import com.yalantis.ucrop.UCrop
+import java.io.File
 
 class HomeFragment : Fragment() {
 //    private lateinit var viewModel: HomeViewModel
@@ -97,7 +100,7 @@ class HomeFragment : Fragment() {
 
 
         viewModel.getSession().observe(viewLifecycleOwner) { user ->
-            if (!user.isLogin) {
+            if (!user.isLogin || isTokenExpired(user.exp)) {
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
                 requireActivity().finish()
             } else {
@@ -124,7 +127,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.buttonClassify.setOnClickListener{
-            viewModel.uploadImage(requireContext())
+            viewModel.uploadImage(requireContext(), token)
         }
 
 
@@ -166,6 +169,15 @@ class HomeFragment : Fragment() {
     }
 
 
+    fun isTokenExpired(expirationTime: Int): Boolean {
+        // Waktu saat ini dalam detik (timestamp UNIX)
+        val currentTime = System.currentTimeMillis() / 1000
+
+        // Periksa apakah waktu saat ini lebih besar dari waktu kedaluwarsa (exp)
+        return currentTime > expirationTime
+    }
+
+
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
@@ -175,6 +187,7 @@ class HomeFragment : Fragment() {
     ) { uri: Uri? ->
         if (uri != null) {
             viewModel.currentImageUri = uri
+            startCrop(uri)
             showImage()
 
         } else {
@@ -185,7 +198,7 @@ class HomeFragment : Fragment() {
 
     private fun startCamera() {
         viewModel.currentImageUri = getImageUri(requireContext())
-        launcherIntentCamera.launch(currentImageUri)
+        launcherIntentCamera.launch(viewModel.currentImageUri)
     }
 
     private val launcherIntentCamera = registerForActivityResult(
@@ -196,11 +209,44 @@ class HomeFragment : Fragment() {
         }
     }
 
+
+    private val cropImage = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val resultUri = UCrop.getOutput(result.data!!)
+            if (resultUri != null) {
+                viewModel.currentImageUri = resultUri
+                showImage()
+            } else {
+                showToast("Error Not Valid")
+            }
+        } else if (result.resultCode == UCrop.RESULT_ERROR) {
+            val cropError = UCrop.getError(result.data!!)
+            cropError?.let {
+                showToast("Error: $it")
+            }
+        }
+    }
+
+    private fun startCrop(uri: Uri) {
+        val destinationUri = Uri.fromFile(File(requireContext().cacheDir, "cropped_image.jpg"))
+        val intent = UCrop.of(uri, destinationUri)
+            .withAspectRatio(1f, 1f)
+            .withMaxResultSize(1024, 1024)
+            .getIntent(requireContext())
+
+        cropImage.launch(intent)
+    }
+
+
     private fun showImage() {
         viewModel.currentImageUri?.let { uri->
             Log.d("Image URI", "showImage: $uri")
             binding.imageView.setImageURI(uri)
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

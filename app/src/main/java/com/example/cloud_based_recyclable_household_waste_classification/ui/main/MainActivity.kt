@@ -1,8 +1,6 @@
 package com.example.cloud_based_recyclable_household_waste_classification.ui.main
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -10,9 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cloud_based_recyclable_household_waste_classification.R
-import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserViewModelFactory
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.ActivityMainBinding
-import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_saved, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_saved, R.id.navigation_account
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

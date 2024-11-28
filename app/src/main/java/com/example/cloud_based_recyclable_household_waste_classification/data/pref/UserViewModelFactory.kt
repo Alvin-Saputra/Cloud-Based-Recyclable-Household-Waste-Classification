@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.cloud_based_recyclable_household_waste_classification.di.Injection
+import com.example.cloud_based_recyclable_household_waste_classification.ui.Account.AccountViewModel
 import com.example.cloud_based_recyclable_household_waste_classification.ui.home.HomeViewModel
 import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginViewModel
 import com.example.cloud_based_recyclable_household_waste_classification.ui.main.MainViewModel
@@ -24,6 +25,10 @@ class UserViewModelFactory(private val repository: UserRepository) :
 
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
+                AccountViewModel(repository) as T
             }
 
 

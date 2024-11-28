@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.ApiConfig
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.ArticleResponse
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.ResultsItem
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.retrofit.ApiConfig
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ArticleResponse
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ResultsItem
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

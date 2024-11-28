@@ -18,6 +18,7 @@ import com.example.cloud_based_recyclable_household_waste_classification.data.pr
 import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserViewModelFactory
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.ActivityLoginBinding
 import com.example.cloud_based_recyclable_household_waste_classification.ui.main.MainActivity
+import com.example.cloud_based_recyclable_household_waste_classification.ui.register.RegisterActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -42,6 +43,11 @@ class LoginActivity : AppCompatActivity() {
         playAnimation()
 
         binding.progressBarLogin.visibility = View.GONE
+
+        binding.buttonGoRegister.setOnClickListener{
+            var intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.btnLogin.setOnClickListener {
             email = binding.edLoginEmail.text.toString()
@@ -110,23 +116,22 @@ class LoginActivity : AppCompatActivity() {
 
 
         val titleText =
-            ObjectAnimator.ofFloat(binding.textViewTitleLogin, View.ALPHA, 1f).setDuration(700)
-
+            ObjectAnimator.ofFloat(binding.textViewTitleLogin, View.ALPHA, 1f).setDuration(400)
         val titleText2 =
-            ObjectAnimator.ofFloat(binding.secondTextViewTitleLogin, View.ALPHA, 1f).setDuration(700)
+            ObjectAnimator.ofFloat(binding.secondTextViewTitleLogin, View.ALPHA, 1f).setDuration(400)
 
         val emailEditText =
-            ObjectAnimator.ofFloat(binding.textInputEmail, View.ALPHA, 1f).setDuration(700)
+            ObjectAnimator.ofFloat(binding.textInputEmail, View.ALPHA, 1f).setDuration(400)
         val passwordEditText =
-            ObjectAnimator.ofFloat(binding.textInputPassword, View.ALPHA, 1f).setDuration(700)
+            ObjectAnimator.ofFloat(binding.textInputPassword, View.ALPHA, 1f).setDuration(400)
 
-        val buttonLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(700)
+        val buttonLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(400)
 
         val textOr =
-            ObjectAnimator.ofFloat(binding.textViewOrRegister, View.ALPHA, 1f).setDuration(700)
+            ObjectAnimator.ofFloat(binding.textViewOrRegister, View.ALPHA, 1f).setDuration(400)
 
         val buttonGoRegister =
-            ObjectAnimator.ofFloat(binding.buttonGoRegister, View.ALPHA, 1f).setDuration(700)
+            ObjectAnimator.ofFloat(binding.buttonGoRegister, View.ALPHA, 1f).setDuration(400)
 
 
         AnimatorSet().apply {

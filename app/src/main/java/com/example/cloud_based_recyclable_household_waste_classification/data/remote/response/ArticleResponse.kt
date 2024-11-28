@@ -1,19 +1,19 @@
-package com.example.cloud_based_recyclable_household_waste_classification.data.remote
+package com.example.cloud_based_recyclable_household_waste_classification.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
 data class ArticleResponse(
 
-	@field:SerializedName("totalResults")
+    @field:SerializedName("totalResults")
 	val totalResults: Int,
 
-	@field:SerializedName("nextPage")
+    @field:SerializedName("nextPage")
 	val nextPage: String,
 
-	@field:SerializedName("results")
+    @field:SerializedName("results")
 	val results: List<ResultsItem>,
 
-	@field:SerializedName("status")
+    @field:SerializedName("status")
 	val status: String
 )
 

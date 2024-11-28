@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.register.RegisterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ProgressBar
+            android:id="@+id/progressBarRegister"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_register_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            android:hint="@string/text_EdtName"
+            app:hintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondTextViewTitleRegister"
+            tools:alpha="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_register_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomEmailTextInputLayout
+            android:id="@+id/textInputEmailRegister"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_register_name"
+            tools:alpha="100">
+
+            <com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomEmailTextInputEditText
+                android:id="@+id/ed_register_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomEmailTextInputLayout>
+
+        <com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomPasswordTextInputLayout
+            android:id="@+id/textInputPasswordRegister"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputEmailRegister"
+            app:passwordToggleEnabled="true"
+            tools:alpha="100">
+
+            <com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomPasswordTextInputEditText
+                android:id="@+id/ed_register_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.example.cloud_based_recyclable_household_waste_classification.ui.custom_view.CustomPasswordTextInputLayout>
+
+        <Button
+            android:id="@+id/btnRegister"
+            style="@style/AllCenterButtonStyles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="48dp"
+            android:alpha="0"
+            android:text="@string/textBtnRegister"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputPasswordRegister"
+            tools:alpha="100" />
+
+        <TextView
+            android:id="@+id/textViewTitleRegister"
+            style="@style/HeadingXL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="96dp"
+            android:layout_marginBottom="32dp"
+            android:alpha="0"
+            android:text="@string/registerTitle"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout_register_name"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout_register_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:alpha="100" />
+
+        <TextView
+            android:id="@+id/secondTextViewTitleRegister"
+            style="@style/HeadingXL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:text="@string/secondRegisterTitle"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout_register_name"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleRegister"
+            tools:alpha="100" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

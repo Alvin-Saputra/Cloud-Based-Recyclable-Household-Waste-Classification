@@ -1,4 +1,4 @@
-package com.example.cloud_based_recyclable_household_waste_classification.data.remote
+package com.example.cloud_based_recyclable_household_waste_classification.data.remote.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

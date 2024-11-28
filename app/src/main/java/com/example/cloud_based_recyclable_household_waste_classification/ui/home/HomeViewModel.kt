@@ -10,8 +10,8 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserModel
 import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserRepository
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.ApiConfig
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.ClassificationResponse
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.retrofit.ApiConfig
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ClassificationResponse
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.uriToFile
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
@@ -45,7 +45,7 @@ class HomeViewModel(private val repository: UserRepository): ViewModel() {
         return repository.getSession().asLiveData()
     }
 
-    fun uploadImage(context: Context) {
+    fun uploadImage(context: Context, token: String) {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, context)
             Log.d("Image File", "showImage: ${imageFile.path}")
@@ -59,7 +59,7 @@ class HomeViewModel(private val repository: UserRepository): ViewModel() {
             viewModelScope.launch {
                 _isLoading.value = true
                 _isSuccess.value = false
-                val client = ApiConfig.getApiService().classifyWaste(multipartBody)
+                val client = ApiConfig.getApiService().classifyWaste(multipartBody, token)
                 client.enqueue(object : Callback<ClassificationResponse> {
                     override fun onResponse(
                         call: Call<ClassificationResponse>,
