@@ -21,10 +21,10 @@ class DetailViewModel: ViewModel() {
     private val _articles = MutableLiveData<List<ResultsItem>>()
     val articles: LiveData<List<ResultsItem>> = _articles
 
-    fun getArticles() {
+    fun getArticles(waste_class: String) {
         _isLoading.value = true
         viewModelScope.launch {
-            val client = ApiConfig.getArticleApiService().getAllArticles("pub_598649f14ff9210b611c1c5a8a9ad8ff2ba28", "Sampah Plastik")
+            val client = ApiConfig.getArticleApiService().getAllArticles("pub_598649f14ff9210b611c1c5a8a9ad8ff2ba28", "recycle ${waste_class}")
             client.enqueue(object : Callback<ArticleResponse> {
                 override fun onResponse(
                     call: Call<ArticleResponse>,

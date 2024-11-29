@@ -1,20 +1,30 @@
 package com.example.cloud_based_recyclable_household_waste_classification.ui.detail
 
+import android.animation.AnimatorSet
+import android.animation.LayoutTransition
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cloud_based_recyclable_household_waste_classification.ui.main.MainActivity
 import com.example.cloud_based_recyclable_household_waste_classification.R
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ResultsItem
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.ActivityDetailBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import java.util.Locale
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var ViewModel: DetailViewModel
+
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>
 
     companion object {
         const val KEY_PROB = "key_prob"
@@ -35,6 +45,45 @@ class DetailActivity : AppCompatActivity() {
 
         ViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
+        binding.btnReturn.setOnClickListener {
+            intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+// ====== Bottom Sheet =====
+        bottomSheetBehavior = BottomSheetBehavior.from(binding.sheet)
+        bottomSheetBehavior.apply {
+            peekHeight = 100 // Height when partially expanded
+            state = BottomSheetBehavior.STATE_COLLAPSED // Initial state
+        }
+
+
+        binding.layouts.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.layouts2.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.layouts3.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        binding.layouts4.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+
+        binding.expandable.setOnClickListener {
+            toggleVisibility(binding.tvDescription, binding.tvRecyclingMethod, binding.tvBenefits, binding.tvRecyclingOutcome)
+        }
+
+        binding.expandable2.setOnClickListener {
+            toggleVisibility(binding.tvRecyclingMethod, binding.tvDescription, binding.tvRecyclingOutcome, binding.tvBenefits)
+        }
+
+        binding.expandable3.setOnClickListener {
+            toggleVisibility(binding.tvRecyclingOutcome, binding.tvDescription, binding.tvBenefits, binding.tvRecyclingMethod)
+        }
+
+        binding.expandable4.setOnClickListener {
+            toggleVisibility(binding.tvBenefits, binding.tvRecyclingMethod, binding.tvDescription, binding.tvRecyclingOutcome)
+        }
+
+// ====== Bottom Sheet =====
+
+
+
+//      ====== Intent Classification Result=====
         val bundle = intent.extras
         if (bundle != null) {
             imageUri = bundle.getParcelable(KEY_URI)
@@ -45,199 +94,91 @@ class DetailActivity : AppCompatActivity() {
         binding.tvWasteName.text = className
         binding.tvClassificationPercentage.text = String.format(Locale.getDefault(), "%.2f%%", probability * 100)
 
-        // Set description based on className
         setWasteInfo(className)
 
-        binding.btnReturn.setOnClickListener {
-            intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
 
-        ViewModel.getArticles()
+//     ======= Articles=======
+
+        ViewModel.getArticles(className)
 
         ViewModel.articles.observe(this){ articles ->
             var result = articles
+            setArticleData(articles)
 
         }
+//     ======= Articles=======
 
+        playAnimation()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+    }
+
+    private fun setArticleData(listEvents: List<ResultsItem>) {
+        val list = listEvents
+
+        binding.rvArticles.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val NewsAdapter = ArticleAdapter(list)
+        binding.rvArticles.adapter = NewsAdapter
+
+    }
+
+    private fun toggleVisibility(visibleView: View, vararg hiddenViews: View) {
+        if (visibleView.visibility == View.GONE) {
+            visibleView.visibility = View.VISIBLE
+            hiddenViews.forEach { it.visibility = View.GONE }
+        } else {
+            visibleView.visibility = View.GONE
+        }
+    }
+
+
+    private fun playAnimation() {
+        val textSwipeUp = ObjectAnimator.ofFloat(binding.textViewSwipeUp, View.ALPHA, 0f, 1f, 0f).apply {
+            duration = 2400 // Durasi total animasi (400ms naik, 400ms turun)
+            repeatCount = ObjectAnimator.INFINITE // Mengulangi animasi secara terus-menerus
+            repeatMode = ObjectAnimator.RESTART // Mengulang dari awal setelah selesai
+        }
+
+        AnimatorSet().apply {
+            play(textSwipeUp)
+            start()
+        }
+    }
+
+    private fun playAnimationBottomSheet(){
+        val bottomSheet = ObjectAnimator.ofFloat(binding.sheet, View.ALPHA, 0f, 1f, 0f).apply {
+            duration = 2400 // Durasi total animasi (400ms naik, 400ms turun)
+            repeatCount = ObjectAnimator.INFINITE // Mengulangi animasi secara terus-menerus
+            repeatMode = ObjectAnimator.RESTART // Mengulang dari awal setelah selesai
+        }
+
+        AnimatorSet().apply {
+            play(bottomSheet)
+            start()
+        }
     }
 
     private fun setWasteInfo(className: String) {
-        when (className.lowercase()) {
-            "battery" -> {
-                // Set the headers and descriptions for battery waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.battery_description)
+        binding.tvDescription.text = getString(resources.getIdentifier("${className}_description", "string", packageName))
+        binding.tvBenefits.text = getString(resources.getIdentifier("${className}_recycling_benefits", "string", packageName))
+        binding.tvRecyclingMethod.text = getString(resources.getIdentifier("${className}_recycling_method", "string", packageName))
+        binding.tvRecyclingOutcome.text = getString(resources.getIdentifier("${className}_recycling_outcome", "string", packageName))
 
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.battery_recycling_method)
 
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.battery_recycling_benefits)
+        if(className == "trash"){
+            binding.tvDescription.text = getString(resources.getIdentifier("${className}_description", "string", packageName))
+            binding.tvBenefits.text = getString(resources.getIdentifier("${className}_disposal_suggestion", "string", packageName))
+            binding.tvRecyclingMethod.text = getString(resources.getIdentifier("${className}_how_to_reduce", "string", packageName))
 
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.battery_recycling_outcome)
-            }
-            "biological" -> {
-                // Set the headers and descriptions for biological waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.biological_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.biological_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.biological_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.biological_recycling_outcome)
-            }
-            "brown-glass" -> {
-                // Set the headers and descriptions for brown glass waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.brown_glass_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.brown_glass_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.brown_glass_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.brown_glass_recycling_outcome)
-            }
-            "cardboard" -> {
-                // Set the headers and descriptions for cardboard waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.cardboard_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.cardboard_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.cardboard_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.cardboard_recycling_outcome)
-            }
-            "clothes" -> {
-                // Set the headers and descriptions for clothes waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.clothes_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.clothes_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.clothes_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.clothes_recycling_outcome)
-            }
-            "green-glass" -> {
-                // Set the headers and descriptions for green glass waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.green_glass_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.green_glass_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.green_glass_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.green_glass_recycling_outcome)
-            }
-            "metal" -> {
-                // Set the headers and descriptions for metal waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.metal_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.metal_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.metal_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.metal_recycling_outcome)
-            }
-            "paper" -> {
-                // Set the headers and descriptions for paper waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.paper_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.paper_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.paper_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.paper_recycling_outcome)
-            }
-            "plastic" -> {
-                // Set the headers and descriptions for plastic waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.plastic_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.plastic_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.plastic_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.plastic_recycling_outcome)
-            }
-            "white-glass" -> {
-                // Set the headers and descriptions for white glass waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.white_glass_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.white_glass_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.white_glass_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.white_glass_recycling_outcome)
-            }
-            "shoes" -> {
-                // Set the headers and descriptions for shoes waste
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.shoes_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.shoes_recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.shoes_recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.shoes_recycling_outcome)
-            }
-            else -> {
-                // Default case for unknown waste type
-                binding.tvDescriptionHeader.text = getString(R.string.description_header)
-                binding.tvWasteDescription.text = getString(R.string.waste_description)
-
-                binding.tvMethodHeader.text = getString(R.string.method_header)
-                binding.tvMethodDescription.text = getString(R.string.recycling_method)
-
-                binding.tvBenefitsHeader.text = getString(R.string.benefits_header)
-                binding.tvBenefitsDescription.text = getString(R.string.recycling_benefits)
-
-                binding.tvOutcomeHeader.text = getString(R.string.outcome_header)
-                binding.tvOutcomeDescription.text = getString(R.string.recycling_outcome)
-            }
+            binding.titleRecyclingMethod.text = "Disposal Suggestion"
+            binding.titleRecyclingOutcome.text = "How To Reduce"
         }
+
     }
+
 }

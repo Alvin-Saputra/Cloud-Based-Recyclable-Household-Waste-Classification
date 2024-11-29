@@ -1,170 +1,293 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:fillViewport="true"
+    android:id="@+id/main"
     tools:context=".ui.detail.DetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main">
+        android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_waste_image"
-            app:shapeAppearanceOverlay="@style/MoreRoundedImage"
-            android:layout_width="376dp"
-            android:layout_height="376dp"
-            android:background="@color/base_color_400"
-            android:contentDescription="@string/waste_image"
+        <ImageView
+            android:id="@+id/ivWasteImage"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bottom_gradient" />
+
+    </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/textViewSwipeUp"
+            style="@style/Heading3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:drawableTop="@drawable/double_arrow_up_24"
+            android:text="Swipe Up"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_waste_name"
-            style="@style/Heading2"
+            style="@style/HeadingXL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginBottom="228dp"
             android:text="@string/waste_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_waste_image" />
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/frameLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_classification_percentage"
-            style="@style/Heading2"
+            style="@style/Heading1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
             android:text="@string/percentage"
-            app:layout_constraintTop_toTopOf="@id/tv_waste_name"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_waste_class"
-            style="@style/Heading3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/waste_class"
-            app:layout_constraintTop_toBottomOf="@id/tv_waste_name"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp" />
-
-        <!-- Description Section -->
-        <TextView
-            android:id="@+id/tv_description_header"
-            style="@style/Heading3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/description_header"
-            app:layout_constraintTop_toBottomOf="@id/tv_waste_class"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_waste_description"
-            style="@style/Parahraph_xm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/waste_description"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_description_header" />
-
-        <!-- Method Section -->
-        <TextView
-            android:id="@+id/tv_method_header"
-            style="@style/Heading3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/method_header"
-            app:layout_constraintTop_toBottomOf="@id/tv_waste_description"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_method_description"
-            style="@style/Parahraph_xm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/recycling_method"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_method_header" />
-
-        <!-- Benefits Section -->
-        <TextView
-            android:id="@+id/tv_benefits_header"
-            style="@style/Heading3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/benefits_header"
-            app:layout_constraintTop_toBottomOf="@id/tv_method_description"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_benefits_description"
-            style="@style/Parahraph_xm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/recycling_benefits"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_benefits_header" />
-
-        <!-- Outcome Section -->
-        <TextView
-            android:id="@+id/tv_outcome_header"
-            style="@style/Heading3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/outcome_header"
-            app:layout_constraintTop_toBottomOf="@id/tv_benefits_description"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_outcome_description"
-            style="@style/Parahraph_xm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/recycling_outcome"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_outcome_header" />
-
-        <Button
-            android:id="@+id/btn_return"
-            style="@style/AllCenterButtonStyles"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/return_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_save_container"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_outcome_description" />
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/tv_waste_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_waste_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waste_name" />
 
         <ImageButton
-            android:id="@+id/btn_save_container"
+            android:id="@+id/btnReturn"
             style="@style/ImageButtonStyles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/background_square"
             android:paddingHorizontal="14dp"
-            android:src="@drawable/ic_bookmark_inactive"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_return"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_return" />
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+    <FrameLayout
+        android:id="@+id/sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bottom_sheet_shape"
+        android:visibility="visible"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/arrow_up_24">
+
+        </ImageView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="50dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/expandable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:id="@+id/layouts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Heading1"
+                        android:id="@+id/titleDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:text="@string/description">
+
+                    </TextView>
+
+                    <TextView
+                        style="@style/Parahraph_sm"
+                        android:id="@+id/tvDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp">
+
+                    </TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/expandable2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:id="@+id/layouts2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
+
+                    <TextView
+                        style="@style/Heading1"
+                        android:id="@+id/titleRecyclingMethod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:text="@string/titleRecyclingMethod">
+                    </TextView>
+
+                    <TextView
+                        style="@style/Parahraph_xm"
+                        android:id="@+id/tvRecyclingMethod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:visibility="gone">
+                    </TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/expandable3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:id="@+id/layouts3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
+
+                    <TextView
+                        style="@style/Heading1"
+                        android:id="@+id/titleRecyclingOutcome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:text="@string/titleRecyclingOutcome">
+                    </TextView>
+
+                    <TextView
+                        style="@style/Parahraph_xm"
+                        android:id="@+id/tvRecyclingOutcome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:visibility="gone">
+                    </TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/expandable4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:id="@+id/layouts4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
+
+                    <TextView
+                        style="@style/Heading1"
+                        android:id="@+id/titleBenefits"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:text="@string/benefits">
+                    </TextView>
+
+                    <TextView
+                        style="@style/Parahraph_xm"
+                        android:id="@+id/tvBenefits"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:visibility="gone">
+                    </TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvArticles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

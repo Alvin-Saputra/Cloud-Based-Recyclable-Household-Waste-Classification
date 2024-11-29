@@ -19,6 +19,8 @@
     <string name="benefits_header">Recycling Benefits</string>
     <string name="outcome_header">Recycling Outcome</string>
 
+
+
     <!-- Battery -->
     <string name="battery_description">Batteries are electronic waste from energy storage devices that contain hazardous materials such as mercury and lead. Used batteries can increase the volume of dangerous waste in landfills, pose risks to human health, and harm ecosystems.</string>
     <string name="battery_recycling_method">
@@ -32,6 +34,9 @@
     <string name="battery_recycling_benefits">Reduces hazardous waste that can pollute soil and water while lowering the demand for mining new materials like lithium and cobalt.</string>
     <string name="battery_recycling_outcome">New batteries, electronic components, or other products like construction materials.</string>
 
+
+
+
     <!-- Biological -->
     <string name="biological_description">Biological waste consists of organic matter from living organisms, such as food scraps, leaves, and animal waste. This waste decomposes naturally with the help of microorganisms. Excessive amounts can cause environmental pollution, health risks, soil degradation, and increased waste volume.</string>
     <string name="biological_recycling_method">
@@ -43,19 +48,6 @@
     </string>
     <string name="biological_recycling_benefits">Reduces waste ending up in landfills and produces organic fertilizer.</string>
     <string name="biological_recycling_outcome">Compost fertilizer, bioenergy, animal feed, paper, concrete bricks, and textiles.</string>
-
-    <!-- Brown Glass -->
-    <string name="brown_glass_description">Brown glass comes from items like beverage bottles, cosmetic containers, or medicine jars. It takes a long time to decompose in landfills and can pollute the environment. However, it is durable and can be recycled without losing quality, making proper recycling essential for environmental sustainability.</string>
-    <string name="brown_glass_recycling_method">
-    Brown glass can be recycled by taking it to a specialized recycling center or drop-off box. The recycling process for brown glass includes:\n
-    • Collect used brown glass bottles or containers and separate them from other materials like metal and plastic.\n
-    • Wash the glass to remove liquid residues, labels, and dirt.\n
-    • Sort glass by color, ensuring only brown glass is processed.\n
-    • Break the glass into small pieces (cullet).\n
-    • Melt the cullet in a furnace to produce molten glass and shape it into new products.
-    </string>
-    <string name="brown_glass_recycling_benefits">Reduces landfill waste, saves energy, lowers the need for raw materials like silica sand, and minimizes environmental impact.</string>
-    <string name="brown_glass_recycling_outcome">New beverage bottles, pharmaceutical containers like syrup bottles, cosmetic packaging such as cream or essential oil bottles, light bulb protective covers, as well as decorative products like mosaics, brown glass tiles, or tabletop surfaces.</string>
 
     <!-- Cardboard -->
     <string name="cardboard_description">Cardboard waste comes from boxes or packaging commonly used for shipping and storage. If not recycled, cardboard can contribute to increased waste volume in landfills and environmental pollution.</string>
@@ -84,18 +76,20 @@
     <string name="clothes_recycling_benefits">Reduces textile waste, carbon emissions, and resource consumption like water and energy needed for new textile production.</string>
     <string name="clothes_recycling_outcome">Cleaning rags, recycled yarn, insulation materials, carpets, or innovative products.</string>
 
-    <!-- Green Glass -->
-    <string name="green_glass_description">Green glass is waste from bottles used for drinks like wine, soda, or alcoholic beverages. It takes a long time to decompose in landfills but can be fully recycled without quality loss, supporting environmental sustainability.</string>
-    <string name="green_glass_recycling_method">
-    Green glass can be recycled by taking it to a specialized recycling center or drop box. The recycling process for green glass includes:\n
-    • Collect used green glass bottles and separate them from other materials like metal and plastic.\n
-    • Wash the glass to remove liquids, labels, and dirt.\n
-    • Sort glass by color, processing only green glass.\n
-    • Break the glass into small pieces (cullet).\n
-    • Melt the cullet in a furnace to produce liquid glass and shape it into new products.
+
+    <!-- White Glass -->
+    <string name="white_glass_description">Glass is waste from various types of bottles, glasses, pharmaceutical containers, window glass, etc., that are difficult to decompose in landfills and can pollute the environment. However, due to its durable nature and the ability to be recycled without losing quality, proper recycling can reduce its impact and support environmental sustainability.
+</string>
+    <string name="white_glass_recycling_method">
+    Glass can be recycled by taking it to a specialized recycling center or drop-off box. The recycling process for glass includes:\n
+    • Collect used bottles or glass containers and separate them from other materials like metal and plastic.\n
+    • Wash the glass to remove liquid residues, labels, and dirt.\n
+    • Sort the glass by color and select the color that will be processed.\n
+    • Break the glass into small pieces known as cullets.\n
+    • Melt the cullet in a furnace to create liquid glass, which is then molded into new products.
     </string>
-    <string name="green_glass_recycling_benefits">Reduces landfill waste, saves energy, lowers the need for raw materials like silica sand, and reduces environmental impact.</string>
-    <string name="green_glass_recycling_outcome">Wine or soda bottles, pharmaceutical or cosmetic containers like serum bottles and cream jars, and decorative materials like mosaics, green glass tiles, or ornaments.</string>
+    <string name="white_glass_recycling_benefits">Saves energy required to produce new glass, reduces the need for raw materials like silica sand, and minimizes environmental impact.</string>
+    <string name="white_glass_recycling_outcome">New glass bottles, glassware, windows, or decorative items.</string>
 
     <!-- Metal -->
     <string name="metal_description">Metal includes various types such as aluminum, steel, and copper, commonly used in industrial and consumer products. Metal waste takes a long time to decompose and can pollute the environment if improperly managed.</string>
@@ -134,18 +128,7 @@
     <string name="plastic_recycling_benefits">Reduces plastic pollution in landfills and oceans, lowers environmental impact, and reduces the need for new plastic production from petroleum.</string>
     <string name="plastic_recycling_outcome">New plastic products such as shopping bags, bottles, and building materials.</string>
 
-    <!-- White Glass -->
-    <string name="white_glass_description">White glass is clear-colored glass waste from bottles, glasses, and windows. This type of glass can be fully recycled without losing its quality, making it a valuable material for recycling.</string>
-    <string name="white_glass_recycling_method">
-    White glass can be recycled by taking it to a specialized recycling center or drop box. The recycling process of white glass includes:\n
-    • Collect and separate used white glass from other materials like metal and plastic.\n
-    • Clean the glass to remove food residues, liquids, and labels.\n
-    • Sort the glass by color, ensuring only white glass is processed.\n
-    • Break the glass into small pieces known as cullets.\n
-    • Melt the cullet in a furnace to create liquid glass, which is then molded into new products.
-    </string>
-    <string name="white_glass_recycling_benefits">Saves energy required to produce new glass, reduces the need for raw materials like silica sand, and minimizes environmental impact.</string>
-    <string name="white_glass_recycling_outcome">New glass bottles, glassware, windows, or decorative items.</string>
+
 
     <!-- Shoes -->
     <string name="shoes_description">
@@ -162,6 +145,28 @@
     <string name="shoes_recycling_outcome">
     Recycled rubber for floor mats, construction materials, or sports equipment, and textile fibers for carpets or insulation.</string>
 
+
+<!--trash-->
+    <string name="trash_description">
+        Trash refers to waste that generally cannot be recycled or is not suitable for reprocessing due to contamination or its materials. This type of waste consists of various materials such as mixed plastics, non-biodegradable single-use items, and other products that hold no economic value for recycling processes. This type of waste often ends up in landfills.
+    </string>
+    
+    <string name="trash_disposal_suggestion">
+    Proper disposal of trash is essential to reduce the negative impact of waste on the environment and public health. The following steps can be taken:\n
+    • Collect trash and separate it from recyclable waste such as paper, pure plastic, or metal to prevent contamination of recyclable materials.\n
+    • Dispose of trash in durable garbage bags, ensuring they are tightly sealed to prevent unpleasant odors and environmental pollution.\n
+    • Avoid letting trash accumulate for too long at home to prevent odors and the potential for becoming a breeding ground for pests.\n
+    • Ensure trash is collected by authorized sanitation workers who will transport it to appropriate landfills.
+    </string>
+
+    <string name="trash_how_to_reduce">
+    • Reducing trash production is a proactive step to help preserve the environment and alleviate the burden on landfills. Here are some ways to achieve this:\n
+    • Switch to reusable items, such as cloth shopping bags, stainless steel water bottles, etc.\n
+    • Purchase products with minimal packaging or those made from environmentally friendly materials.\n
+    • Prioritize buying items in larger quantities or sizes to reduce the waste from small packaging, which is often harder to recycle.
+
+    </string>
+
     <!-- Deskripsi Limbah Umum -->
     <string name="waste_description">Waste is any material that is discarded</string>
     <string name="recycling_method">Recycling methods vary for different materials</string>
@@ -176,5 +181,9 @@
     <string name="text_EdtName">username</string>
     <string name="textBtnRegister">Register</string>
     <string name="secondRegisterTitle">Account</string>
+    <string name="description">Description</string>
+    <string name="benefits">Benefits</string>
+    <string name="titleRecyclingMethod">Recycling Method</string>
+    <string name="titleRecyclingOutcome">Recycling Outcome</string>
 
 </resources>
