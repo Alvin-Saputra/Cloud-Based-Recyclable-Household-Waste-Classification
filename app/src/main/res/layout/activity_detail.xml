@@ -81,13 +81,26 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:background="@drawable/background_square"
+            android:background="@drawable/button_background_green"
             android:paddingHorizontal="14dp"
             android:src="@drawable/baseline_arrow_back_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/btnSave"
+            style="@style/ImageButtonStyles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/button_background_green"
+            android:paddingHorizontal="14dp"
+            android:src="@drawable/ic_bookmark_inactive"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/sheet"
@@ -107,185 +120,181 @@
             android:src="@drawable/arrow_up_24">
 
         </ImageView>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="50dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/expandable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:padding="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="12dp">
-
-                <LinearLayout
-                    android:id="@+id/layouts"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/Heading1"
-                        android:id="@+id/titleDesc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:text="@string/description">
-
-                    </TextView>
-
-                    <TextView
-                        style="@style/Parahraph_sm"
-                        android:id="@+id/tvDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/expandable2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="10dp"
-                android:padding="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="12dp">
-
-                <LinearLayout
-                    android:id="@+id/layouts2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:animateLayoutChanges="true">
-
-                    <TextView
-                        style="@style/Heading1"
-                        android:id="@+id/titleRecyclingMethod"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:text="@string/titleRecyclingMethod">
-                    </TextView>
-
-                    <TextView
-                        style="@style/Parahraph_xm"
-                        android:id="@+id/tvRecyclingMethod"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:visibility="gone">
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/expandable3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="10dp"
-                android:padding="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="12dp">
-
-                <LinearLayout
-                    android:id="@+id/layouts3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:animateLayoutChanges="true">
-
-                    <TextView
-                        style="@style/Heading1"
-                        android:id="@+id/titleRecyclingOutcome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:text="@string/titleRecyclingOutcome">
-                    </TextView>
-
-                    <TextView
-                        style="@style/Parahraph_xm"
-                        android:id="@+id/tvRecyclingOutcome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:visibility="gone">
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/expandable4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="10dp"
-                android:padding="20dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="12dp">
-
-                <LinearLayout
-                    android:id="@+id/layouts4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:animateLayoutChanges="true">
-
-                    <TextView
-                        style="@style/Heading1"
-                        android:id="@+id/titleBenefits"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:text="@string/benefits">
-                    </TextView>
-
-                    <TextView
-                        style="@style/Parahraph_xm"
-                        android:id="@+id/tvBenefits"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:visibility="gone">
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvArticles"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="50dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/expandable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="12dp">
+
+                    <LinearLayout
+                        android:id="@+id/layouts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/titleDesc"
+                            style="@style/Heading1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:text="@string/description">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/tvDescription"
+                            style="@style/Parahraph_sm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/expandable2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="12dp">
+
+                    <LinearLayout
+                        android:id="@+id/layouts2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/titleRecyclingMethod"
+                            style="@style/Heading1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:text="@string/titleRecyclingMethod"></TextView>
+
+                        <TextView
+                            android:id="@+id/tvRecyclingMethod"
+                            style="@style/Parahraph_xm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:visibility="gone"></TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/expandable3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="12dp">
+
+                    <LinearLayout
+                        android:id="@+id/layouts3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/titleRecyclingOutcome"
+                            style="@style/Heading1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:text="@string/titleRecyclingOutcome"></TextView>
+
+                        <TextView
+                            android:id="@+id/tvRecyclingOutcome"
+                            style="@style/Parahraph_xm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:visibility="gone"></TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/expandable4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="12dp">
+
+                    <LinearLayout
+                        android:id="@+id/layouts4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/titleBenefits"
+                            style="@style/Heading1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:text="@string/benefits"></TextView>
+
+                        <TextView
+                            android:id="@+id/tvBenefits"
+                            style="@style/Parahraph_xm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:visibility="gone"></TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvArticles"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </LinearLayout>
         </ScrollView>
 
     </FrameLayout>

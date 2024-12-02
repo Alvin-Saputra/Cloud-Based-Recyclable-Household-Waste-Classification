@@ -1,17 +1,14 @@
-package com.example.cloud_based_recyclable_household_waste_classification.ui.Account
+package com.example.cloud_based_recyclable_household_waste_classification.ui.account
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserViewModelFactory
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.FragmentAccountBinding
-import com.example.cloud_based_recyclable_household_waste_classification.ui.home.HomeViewModel
 import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
 
 class AccountFragment : Fragment() {

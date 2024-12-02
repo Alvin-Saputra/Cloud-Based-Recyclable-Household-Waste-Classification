@@ -1,6 +1,8 @@
 package com.example.cloud_based_recyclable_household_waste_classification.ui.home
 
 import android.Manifest
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -10,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,11 +22,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.example.cloud_based_recyclable_household_waste_classification.R
 import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserViewModelFactory
 import com.example.cloud_based_recyclable_household_waste_classification.ui.detail.DetailActivity
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.FragmentHomeBinding
 import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.getImageUri
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.yalantis.ucrop.UCrop
 import java.io.File
 
@@ -98,6 +104,8 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        playAnimation()
+
 
         viewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin || isTokenExpired(user.exp)) {
@@ -118,15 +126,60 @@ class HomeFragment : Fragment() {
 
 //        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        binding.buttonGallery.setOnClickListener{
-            startGallery()
+//        binding.buttonGallery.setOnClickListener{
+//            startGallery()
+//        }
+
+        binding.btnScan.setOnClickListener {
+            val bottomSheetDialog = BottomSheetDialog(requireContext())
+            val bottomSheetView = layoutInflater.inflate(R.layout.item_bottom_sheet, null)
+
+            // Show the black background with animation
+            binding.blackBg.apply {
+                visibility = View.VISIBLE
+                alpha = 0f
+                animate().alpha(1f).setDuration(300).start()
+            }
+
+            // Add click listeners for camera and gallery options
+            bottomSheetView.findViewById<LinearLayout>(R.id.camera).setOnClickListener {
+                startCamera()
+                bottomSheetDialog.dismiss()
+                // Hide the black background with animation
+                binding.blackBg.animate().alpha(0f).setDuration(300).withEndAction {
+                    binding.blackBg.visibility = View.GONE
+                }.start()
+            }
+
+            bottomSheetView.findViewById<LinearLayout>(R.id.gallery).setOnClickListener {
+                startGallery()
+                bottomSheetDialog.dismiss()
+                // Hide the black background with animation
+                binding.blackBg.animate().alpha(0f).setDuration(300).withEndAction {
+                    binding.blackBg.visibility = View.GONE
+                }.start()
+            }
+
+            // Hide the black background when user clicks on it
+            binding.blackBg.setOnClickListener {
+                binding.blackBg.animate().alpha(0f).setDuration(300).withEndAction {
+                    binding.blackBg.visibility = View.GONE
+                }.start()
+            }
+
+            bottomSheetDialog.setOnDismissListener {
+                // Hide the black background with animation when the dialog is dismissed
+                binding.blackBg.animate().alpha(0f).setDuration(300).withEndAction {
+                    binding.blackBg.visibility = View.GONE
+                }.start()
+            }
+
+            bottomSheetDialog.setContentView(bottomSheetView)
+            bottomSheetDialog.show()
         }
 
-        binding.buttonCamera.setOnClickListener{
-            startCamera()
-        }
-
-        binding.buttonClassify.setOnClickListener{
+//
+        binding.btnClassify.setOnClickListener{
             viewModel.uploadImage(requireContext(), token)
         }
 
@@ -153,6 +206,7 @@ class HomeFragment : Fragment() {
                         intent.putExtra(DetailActivity.KEY_PROB, result.probability)
                         intent.putExtra(DetailActivity.KEY_CLASSNAME, result.className)
                         intent.putExtra(DetailActivity.KEY_URI, viewModel.currentImageUri)
+                        intent.putExtra(DetailActivity.KEY_SOURCE, DetailActivity.SOURCE_HOME_FRAGMENT)
                         startActivity(intent)
                     }
 
@@ -189,6 +243,7 @@ class HomeFragment : Fragment() {
             viewModel.currentImageUri = uri
             startCrop(uri)
             showImage()
+            binding.btnClassify.visibility = View.VISIBLE
 
         } else {
             Log.d("Photo Picker", "No media selected")
@@ -206,6 +261,8 @@ class HomeFragment : Fragment() {
     ) { isSuccess ->
         if (isSuccess) {
             showImage()
+            startCrop(viewModel.currentImageUri!!)
+            binding.btnClassify.visibility = View.VISIBLE
         }
     }
 
@@ -242,6 +299,8 @@ class HomeFragment : Fragment() {
         viewModel.currentImageUri?.let { uri->
             Log.d("Image URI", "showImage: $uri")
             binding.imageView.setImageURI(uri)
+            binding.imageViewGreen.visibility = View.VISIBLE
+
         }
     }
 
@@ -252,5 +311,37 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    private fun playAnimation() {
+
+        binding.imageView.alpha = 0f
+        binding.textViewClassifyOrderTitle.alpha = 0f
+        binding.textViewClassifyOrderSubtitle.alpha = 0f
+        binding.btnScan.alpha = 0f
+
+        val image =
+            ObjectAnimator.ofFloat(binding.imageView, View.ALPHA, 1f).setDuration(400)
+
+        val titleText =
+            ObjectAnimator.ofFloat(binding.textViewClassifyOrderTitle, View.ALPHA, 1f).setDuration(400)
+
+        val subTitleText =
+            ObjectAnimator.ofFloat(binding.textViewClassifyOrderSubtitle, View.ALPHA, 1f).setDuration(400)
+
+        val btn =
+            ObjectAnimator.ofFloat(binding.btnScan, View.ALPHA, 1f).setDuration(400)
+
+
+        AnimatorSet().apply {
+            playSequentially(
+               image,
+                titleText,
+                subTitleText,
+                btn
+            )
+            start()
+        }
     }
 }

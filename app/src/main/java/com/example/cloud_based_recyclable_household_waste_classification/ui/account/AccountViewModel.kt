@@ -1,7 +1,6 @@
-package com.example.cloud_based_recyclable_household_waste_classification.ui.Account
+package com.example.cloud_based_recyclable_household_waste_classification.ui.account
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope

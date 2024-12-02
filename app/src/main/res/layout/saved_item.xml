@@ -58,39 +58,23 @@
             card_view:layout_constraintStart_toStartOf="@+id/textview_item_title"
             card_view:layout_constraintTop_toBottomOf="@+id/textview_item_title" />
 
-        <TextView
-            android:id="@+id/textView_item_description"
-            style="@style/Parahraph_sm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="24dp"
-            android:text="TextView"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="1.0"
-            card_view:layout_constraintStart_toStartOf="@+id/textview_item_title"
-            card_view:layout_constraintTop_toBottomOf="@+id/textview_item_subtitle"
-            card_view:layout_constraintVertical_bias="0.088" />
-
         <Button
-            android:id="@+id/button_detail"
+            android:id="@+id/btnDetail"
             style="@style/ButtonStyles"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:drawableRight="@drawable/baseline_arrow_forward_24"
             android:drawableTint="@color/white"
             android:text="Lihat Detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_item_subtitle"
             card_view:cornerRadius="20dp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="1.0"
-            card_view:layout_constraintStart_toStartOf="@+id/textView_item_description"
-            card_view:layout_constraintTop_toBottomOf="@+id/textView_item_description" />
+            card_view:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
