@@ -33,14 +33,35 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+
         val fragmentToOpen = intent.getStringExtra("fragmentToOpen")
         if (fragmentToOpen == "SavedFragment") {
             navController.navigate(R.id.navigation_saved)
         }
 
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-
+        navView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    // Clear back stack before navigating to Home
+                    navController.popBackStack(R.id.navigation_home, false)
+                    navController.navigate(R.id.navigation_home)
+                    true
+                }
+                R.id.navigation_saved -> {
+                    navController.navigate(R.id.navigation_saved)
+                    true
+                }
+                R.id.navigation_account -> {
+                    navController.navigate(R.id.navigation_account)
+                    true
+                }
+                else -> false
+            }
+        }
 
     }
 }
