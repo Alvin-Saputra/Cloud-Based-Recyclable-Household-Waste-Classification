@@ -14,42 +14,44 @@ import com.example.cloud_based_recyclable_household_waste_classification.ui.logi
 class AccountFragment : Fragment() {
 
     private var _binding: FragmentAccountBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel by viewModels<AccountViewModel> {
         UserViewModelFactory.getInstance(requireContext())
     }
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val accountViewModel =
-//            ViewModelProvider(this).get(AccountViewModel::class.java)
-
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        observeViewModel()
 
-        viewModel.getSession().observe(viewLifecycleOwner) { user ->
-            if (!user.isLogin) {
-                startActivity(Intent(requireContext(), LoginActivity::class.java))
-                requireActivity().finish()
-            }
-        }
-
-        binding.buttonLogout.setOnClickListener{
+        binding.buttonLogout.setOnClickListener {
             viewModel.logout()
         }
-//        val textView: TextView = binding.textNotifications
-//        accountViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
+
         return root
+    }
+
+    private fun observeViewModel() {
+        viewModel.getSession().observe(viewLifecycleOwner) { user ->
+            if (!user.isLogin) {
+                navigateToLogin()
+            } else {
+                // Update UI with user data
+                binding.tvGreeting.text = "Hello, ${user.username}!"
+                binding.tvEmail.text = "Email: ${user.email}"
+            }
+        }
+    }
+
+    private fun navigateToLogin() {
+        startActivity(Intent(requireContext(), LoginActivity::class.java))
+        requireActivity().finish()
     }
 
     override fun onDestroyView() {

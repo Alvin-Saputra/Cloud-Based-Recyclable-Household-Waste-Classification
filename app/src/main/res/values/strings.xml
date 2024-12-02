@@ -185,5 +185,6 @@
     <string name="benefits">Benefits</string>
     <string name="titleRecyclingMethod">Recycling Method</string>
     <string name="titleRecyclingOutcome">Recycling Outcome</string>
+    <string name="profile_picture">Profile Picture</string>
 
 </resources>
