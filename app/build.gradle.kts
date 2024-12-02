@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.glide)
     implementation (libs.ucrop)
+    implementation(libs.androidx.datastore.core.android)
 
 //    testing
     testImplementation(libs.junit)
