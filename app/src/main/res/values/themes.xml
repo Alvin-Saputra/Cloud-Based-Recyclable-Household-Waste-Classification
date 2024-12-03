@@ -48,6 +48,34 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Parahraph_md">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+    <style name="Parahraph_sm">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+    <style name="Parahraph_xm">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+    <style name="Parahraph_xxm">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
 
 
     <!-- Tema kustom tanpa ActionBar dengan warna yang sudah didefinisikan -->

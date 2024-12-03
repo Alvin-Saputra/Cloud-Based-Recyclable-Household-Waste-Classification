@@ -36,25 +36,6 @@
     </style>
 
 
-    <style name="Parahraph_md">
-        <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="Parahraph_sm">
-        <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="Parahraph_xm">
-        <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="Parahraph_xxm">
-        <item name="fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">10sp</item>
-    </style>
 
 
 

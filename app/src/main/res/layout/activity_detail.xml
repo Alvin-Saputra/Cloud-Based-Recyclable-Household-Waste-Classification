@@ -148,7 +148,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="@color/base_color_500">
 
                         <TextView
                             android:id="@+id/titleDesc"
@@ -188,7 +189,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="@color/base_color_500">
 
                         <TextView
                             android:id="@+id/titleRecyclingMethod"
@@ -226,7 +228,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="@color/base_color_500">
 
                         <TextView
                             android:id="@+id/titleRecyclingOutcome"
@@ -264,7 +267,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="@color/base_color_500">
 
                         <TextView
                             android:id="@+id/titleBenefits"
