@@ -131,8 +131,7 @@
         android:layout_marginBottom="4dp"
         android:alpha="0"
         android:text="@string/btnGoRegister"
-
-        android:textColor="@color/black"
+        
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnLogin"
         app:layout_constraintHorizontal_bias="0.0"

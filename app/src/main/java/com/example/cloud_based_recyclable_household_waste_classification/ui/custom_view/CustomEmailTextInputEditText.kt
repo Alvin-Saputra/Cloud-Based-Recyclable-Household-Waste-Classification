@@ -24,10 +24,21 @@ class CustomEmailTextInputEditText : TextInputEditText {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Cek apakah mode gelap atau terang
+                val currentMode = resources.configuration.uiMode and
+                        android.content.res.Configuration.UI_MODE_NIGHT_MASK
+                val textColor = if (currentMode == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+                    ContextCompat.getColor(context, R.color.white)  // Warna teks untuk Dark Mode
+                } else {
+                    ContextCompat.getColor(context, R.color.black)  // Warna teks untuk Day Mode
+                }
+
+                setTextColor(textColor)
+
                 if (s != null && s.length < 8) {
                     setTextColor(ContextCompat.getColor(context, R.color.red))
                 } else {
-                    setTextColor(ContextCompat.getColor(context, android.R.color.black))
+                    setTextColor(textColor)  // Kembalikan ke warna normal jika panjang teks valid
                 }
             }
 

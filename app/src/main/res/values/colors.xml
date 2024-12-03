@@ -26,4 +26,10 @@
     <color name="base_color_900">#46952E</color>
     <color name="base_color_1000">#26740E</color>
     <color name="base_color_1100">#20600C</color>
+
+    <!-- Warna untuk teks custom -->
+    <color name="text_color_invalid">@android:color/holo_red_light</color> <!-- Warna merah -->
+    <color name="text_color_valid">?android:textColorPrimary</color> <!-- Warna mengikuti tema -->
+
+
 </resources>

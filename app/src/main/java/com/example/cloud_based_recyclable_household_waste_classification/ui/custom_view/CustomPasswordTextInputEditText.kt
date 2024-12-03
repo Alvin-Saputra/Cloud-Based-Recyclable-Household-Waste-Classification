@@ -10,24 +10,34 @@ import com.example.cloud_based_recyclable_household_waste_classification.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-class CustomPasswordTextInputEditText: TextInputEditText {
+class CustomPasswordTextInputEditText : TextInputEditText {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     init {
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 val textInputLayout = parent.parent as? TextInputLayout
-                textInputLayout?.let{
+                textInputLayout?.let {
                     error = null
                 }
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null && s.length < 8) {
-                    setTextColor(ContextCompat.getColor(context, R.color.red))
+                // Cek apakah mode gelap atau terang
+                val currentMode = resources.configuration.uiMode and
+                        android.content.res.Configuration.UI_MODE_NIGHT_MASK
+                val textColor = if (currentMode == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+                    ContextCompat.getColor(context, R.color.white)  // Warna teks untuk Dark Mode
                 } else {
-                    // Kembali ke warna teks default jika tidak
-                    setTextColor(ContextCompat.getColor(context, android.R.color.black))
+                    ContextCompat.getColor(context, R.color.black)  // Warna teks untuk Day Mode
+                }
+
+                setTextColor(textColor)
+
+                if (s != null && s.length < 8) {
+                    setTextColor(ContextCompat.getColor(context, R.color.red))  // Warna merah jika password kurang dari 8 karakter
+                } else {
+                    setTextColor(textColor)  // Kembalikan ke warna normal jika panjang teks valid
                 }
             }
 

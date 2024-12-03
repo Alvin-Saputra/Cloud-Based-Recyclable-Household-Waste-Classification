@@ -23,7 +23,6 @@
         android:scaleType="centerCrop"
         android:background="@drawable/black_background" />
 
-    <!-- Salam -->
     <TextView
         android:id="@+id/tv_greeting"
         android:layout_width="wrap_content"
@@ -32,12 +31,11 @@
         android:text="Hello, User!"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/iv_profile_picture"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textColor="?attr/colorOnPrimary"
+    app:layout_constraintTop_toBottomOf="@id/iv_profile_picture"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Email Pengguna -->
     <TextView
         android:id="@+id/tv_email"
         android:layout_width="wrap_content"
@@ -45,20 +43,19 @@
         android:layout_marginTop="8dp"
         android:text="Email: user@example.com"
         android:textSize="16sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/tv_greeting"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textColor="?attr/colorOnPrimary"
+    app:layout_constraintTop_toBottomOf="@id/tv_greeting"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Tombol Logout -->
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Logout"
-        app:layout_constraintTop_toBottomOf="@id/tv_email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        android:textColor="?attr/colorOnPrimary"
+    app:layout_constraintTop_toBottomOf="@id/tv_email"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
