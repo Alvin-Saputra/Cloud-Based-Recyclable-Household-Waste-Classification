@@ -42,7 +42,7 @@ class SavedAdapter (private val listSavedItem: List<ListStoryItem>) : RecyclerVi
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val item = listSavedItem[position]
         holder.tvTitle.text = item.className
-        holder.tvSubtitle.text = String.format("%.2f%%", item.probability * 100) + "%"
+        holder.tvSubtitle.text = String.format("%.2f%%", item.probability * 100)
 
         // Load image using Glide
         Glide.with(holder.itemView.context)
