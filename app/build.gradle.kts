@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1"
 }
 
 android {
@@ -13,7 +14,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField("String", "API_KEY", "\"AIzaSyB0st4VqyLg4ThcMafal0tz926SmB_HC8Y\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -35,6 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -53,12 +55,17 @@ dependencies {
     implementation (libs.ucrop)
     implementation(libs.androidx.datastore.core.android)
 
+//    maps
+    implementation(libs.play.services.maps)
+    implementation (libs.play.services.location)
+    implementation (libs.places)
+
 //    testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation (libs.transport.runtime)
+//    implementation (libs.transport.runtime)
 
 
 //    preferences

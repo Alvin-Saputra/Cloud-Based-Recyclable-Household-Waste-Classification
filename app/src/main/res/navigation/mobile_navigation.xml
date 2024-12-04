@@ -18,6 +18,12 @@
         tools:layout="@layout/saved_fragment" />
 
     <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.example.cloud_based_recyclable_household_waste_classification.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
         android:id="@+id/navigation_account"
         android:name="com.example.cloud_based_recyclable_household_waste_classification.ui.account.AccountFragment"
         android:label="@string/title_account"

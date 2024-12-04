@@ -5,6 +5,8 @@ import com.example.cloud_based_recyclable_household_waste_classification.data.re
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.DeleteSavedUserClassificationResponse
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.GetUserClassificationResponse
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.LoginResponse
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.PlaceDetailsResponse
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.PlacesResponse
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.RegisterResponse
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.SaveUserClassificationResponse
 import okhttp3.MultipartBody
@@ -72,5 +74,19 @@ interface ApiService {
         @Query("apikey") apikey: String? = null,
         @Query("q") q: String? = null,
     ): Call<ArticleResponse>
+
+    @GET("place/nearbysearch/json")
+    suspend fun getNearbyRestaurants(
+        @Query("location") location: String,
+        @Query("radius") radius: Int,
+        @Query("keyword") keyword: String,
+        @Query("key") apiKey: String
+    ): PlacesResponse
+
+    @GET("place/details/json")
+    suspend fun getPlaceDetails(
+        @Query("place_id") placeId: String,
+        @Query("key") apiKey: String
+    ): PlaceDetailsResponse
 
 }

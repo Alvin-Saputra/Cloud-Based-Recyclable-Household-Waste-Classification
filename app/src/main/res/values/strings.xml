@@ -2,6 +2,7 @@
     <string name="app_name">Bin Buddy</string>
     <string name="title_home">Home</string>
     <string name="title_saved">Saved</string>
+    <string name="title_map">Map</string>
     <string name="title_account">Account</string>
     <string name="back">Back</string>
     <string name="classification_result">Classification Result</string>
@@ -20,7 +21,6 @@
     <string name="outcome_header">Recycling Outcome</string>
 
 
-
     <!-- Battery -->
     <string name="battery_description">Batteries are electronic waste from energy storage devices that contain hazardous materials such as mercury and lead. Used batteries can increase the volume of dangerous waste in landfills, pose risks to human health, and harm ecosystems.</string>
     <string name="battery_recycling_method">
@@ -33,8 +33,6 @@
     </string>
     <string name="battery_recycling_benefits">Reduces hazardous waste that can pollute soil and water while lowering the demand for mining new materials like lithium and cobalt.</string>
     <string name="battery_recycling_outcome">New batteries, electronic components, or other products like construction materials.</string>
-
-
 
 
     <!-- Biological -->
@@ -129,7 +127,6 @@
     <string name="plastic_recycling_outcome">New plastic products such as shopping bags, bottles, and building materials.</string>
 
 
-
     <!-- Shoes -->
     <string name="shoes_description">
     Shoes are products made from various materials like rubber, fabric, leather, and plastic. Old unused shoes often become waste due to their difficulty in decomposing naturally.</string>
@@ -146,11 +143,11 @@
     Recycled rubber for floor mats, construction materials, or sports equipment, and textile fibers for carpets or insulation.</string>
 
 
-<!--trash-->
+    <!--trash-->
     <string name="trash_description">
         Trash refers to waste that generally cannot be recycled or is not suitable for reprocessing due to contamination or its materials. This type of waste consists of various materials such as mixed plastics, non-biodegradable single-use items, and other products that hold no economic value for recycling processes. This type of waste often ends up in landfills.
     </string>
-    
+
     <string name="trash_disposal_suggestion">
     Proper disposal of trash is essential to reduce the negative impact of waste on the environment and public health. The following steps can be taken:\n
     • Collect trash and separate it from recyclable waste such as paper, pure plastic, or metal to prevent contamination of recyclable materials.\n
@@ -186,5 +183,7 @@
     <string name="titleRecyclingMethod">Recycling Method</string>
     <string name="titleRecyclingOutcome">Recycling Outcome</string>
     <string name="profile_picture">Profile Picture</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
