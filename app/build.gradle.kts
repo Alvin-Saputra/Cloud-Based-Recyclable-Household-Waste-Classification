@@ -14,7 +14,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "API_KEY", "\"AIzaSyB0st4VqyLg4ThcMafal0tz926SmB_HC8Y\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -54,6 +53,8 @@ dependencies {
     implementation(libs.glide)
     implementation (libs.ucrop)
     implementation(libs.androidx.datastore.core.android)
+    implementation (libs.androidx.exifinterface)
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
 //    maps
     implementation(libs.play.services.maps)

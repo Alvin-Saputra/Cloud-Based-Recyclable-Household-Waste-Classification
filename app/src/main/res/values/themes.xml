@@ -18,7 +18,8 @@
 
     </style>
 
-    <color name="background_color">#F5F5DC</color> <!-- Beige -->
+    <color name="background_color">@color/white</color>
+    <color name="background_color_variant2">@color/black</color>
 
     <style name="Heading1">
         <item name="android:textSize">24sp</item>

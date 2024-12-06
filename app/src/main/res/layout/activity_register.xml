@@ -12,23 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <ProgressBar
-            android:id="@+id/progressBarRegister"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_register_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
             android:alpha="0"
             android:hint="@string/text_EdtName"
@@ -93,16 +82,30 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="48dp"
             android:alpha="0"
             android:text="@string/textBtnRegister"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputPasswordRegister"
+            tools:alpha="100" />
+
+        <Button
+            android:id="@+id/btnGoLogin"
+            style="@style/AllCenterButtonStyles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            android:text="@string/btnLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_orLogin"
             tools:alpha="100" />
 
         <TextView
@@ -110,7 +113,7 @@
             style="@style/HeadingXL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="96dp"
+            android:layout_marginTop="48dp"
             android:layout_marginBottom="32dp"
             android:alpha="0"
             android:text="@string/registerTitle"
@@ -129,5 +132,41 @@
             app:layout_constraintStart_toStartOf="@+id/textInputLayout_register_name"
             app:layout_constraintTop_toBottomOf="@+id/textViewTitleRegister"
             tools:alpha="100" />
+
+        <ImageView
+            android:id="@+id/blackBg"
+            android:layout_width="406dp"
+            android:layout_height="734dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/black_background"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <ProgressBar
+            android:id="@+id/progressBarRegister"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_orLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/or"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+            android:alpha="0"
+            tools:alpha="100" />/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

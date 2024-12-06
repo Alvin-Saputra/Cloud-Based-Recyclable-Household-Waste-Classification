@@ -37,23 +37,35 @@ class ArticleAdapter (private val listArticles: List<ResultsItem>) : RecyclerVie
     override fun getItemCount(): Int  = listArticles.size
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        val titleMaxLength = 40
+        val descMaxLength = 60
         val article = listArticles[position]
-        holder.tvArticleTitle.text = article.title
-        holder.tvArticleDesc.text = article.description
 
-        // Load image using Glide
+        val title = article.title?:"No Title"
+        val description = article.description?:"No Description"
+
+        holder.tvArticleTitle.text = if (title.length > titleMaxLength) {
+            "${title.substring(0, titleMaxLength)}..."
+        } else {
+            title
+        }
+
+        holder.tvArticleDesc.text = if (description.length > descMaxLength) {
+            "${description.substring(0, descMaxLength)}..."
+        } else {
+            description
+        }
+
         Glide.with(holder.itemView.context)
-            .load(article.imageUrl)
+            .load(article.imageUrl?:"")
             .into(holder.imgNews)
 
         holder.itemView.setOnClickListener {
-
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(article.link)
             holder.itemView.context.startActivity(intent)
         }
-
     }
-
-
 }
+
+

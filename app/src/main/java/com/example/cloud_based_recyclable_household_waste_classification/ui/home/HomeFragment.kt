@@ -5,9 +5,12 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity.RESULT_OK
 import androidx.core.content.ContextCompat
+import androidx.exifinterface.media.ExifInterface
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +32,7 @@ import com.example.cloud_based_recyclable_household_waste_classification.ui.deta
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.FragmentHomeBinding
 import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.getImageUri
+import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.saveRotatedBitmap
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.yalantis.ucrop.UCrop
@@ -40,6 +45,8 @@ class HomeFragment : Fragment() {
         private const val REQUIRED_PERMISSION_WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE
         private const val REQUIRED_PERMISSION_READ_EXTERNAL_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE
         private const val REQUIRED_PERMISSION_READ_MEDIA_IMAGES = Manifest.permission.READ_MEDIA_IMAGES
+        private const val REQUIRED_PERMISSION_ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION
+        private const val REQUIRED_PERMISSION_ACCESS_COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION
     }
 
 
@@ -78,6 +85,18 @@ class HomeFragment : Fragment() {
             } else {
                 Toast.makeText(requireContext(), "Read Media Images denied", Toast.LENGTH_LONG).show()
             }
+
+            if (permissions[REQUIRED_PERMISSION_ACCESS_FINE_LOCATION] == true) {
+                Toast.makeText(requireContext(), "Access fine location permission granted", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "Access fine location denied", Toast.LENGTH_LONG).show()
+            }
+
+            if (permissions[REQUIRED_PERMISSION_ACCESS_COARSE_LOCATION] == true) {
+                Toast.makeText(requireContext(), "Access coarse location permission granted", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "Access coarse location denied", Toast.LENGTH_LONG).show()
+            }
         }
 
     private fun allPermissionsGranted(): Boolean {
@@ -89,7 +108,9 @@ class HomeFragment : Fragment() {
                     ContextCompat.checkSelfPermission(requireContext(), REQUIRED_PERMISSION_READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
         }
         val readMediaImages = ContextCompat.checkSelfPermission(requireContext(), REQUIRED_PERMISSION_READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED
-        return cameraPermission && storagePermission && readMediaImages
+        val fineLocationPermission = ContextCompat.checkSelfPermission(requireContext(), REQUIRED_PERMISSION_ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        val coarseLocationPermission = ContextCompat.checkSelfPermission(requireContext(), REQUIRED_PERMISSION_ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        return cameraPermission && storagePermission && readMediaImages && fineLocationPermission && coarseLocationPermission
     }
 
     override fun onCreateView(
@@ -120,7 +141,7 @@ class HomeFragment : Fragment() {
 
         if (!allPermissionsGranted()) {
             requestPermissionLauncher.launch(
-                arrayOf(REQUIRED_PERMISSION_CAMERA, REQUIRED_PERMISSION_WRITE_EXTERNAL_STORAGE, REQUIRED_PERMISSION_READ_EXTERNAL_STORAGE, REQUIRED_PERMISSION_READ_MEDIA_IMAGES)
+                arrayOf(REQUIRED_PERMISSION_CAMERA, REQUIRED_PERMISSION_WRITE_EXTERNAL_STORAGE, REQUIRED_PERMISSION_READ_EXTERNAL_STORAGE, REQUIRED_PERMISSION_READ_MEDIA_IMAGES, REQUIRED_PERMISSION_ACCESS_FINE_LOCATION, REQUIRED_PERMISSION_ACCESS_COARSE_LOCATION)
             )
         }
 
@@ -180,7 +201,20 @@ class HomeFragment : Fragment() {
 
 //
         binding.btnClassify.setOnClickListener{
-            viewModel.uploadImage(requireContext(), token)
+            if(viewModel.currentImageUri != null){
+                viewModel.uploadImage(requireContext(), token)
+
+                // Show the black background with animation
+                binding.blackBg.apply {
+                    visibility = View.VISIBLE
+                    alpha = 0f
+                    animate().alpha(1f).setDuration(300).start()
+                }
+            }
+            else if(viewModel.currentImageUri == null){
+                showToast("Please Add Your Image")
+            }
+
         }
 
 
@@ -195,7 +229,12 @@ class HomeFragment : Fragment() {
 
         viewModel.isSuccess.observe(viewLifecycleOwner){ isSuccess ->
 
+            binding.blackBg.animate().alpha(0f).setDuration(300).withEndAction {
+                binding.blackBg.visibility = View.GONE
+            }.start()
+
             if(isSuccess == true){
+
                 viewModel.classificationResult.observe(viewLifecycleOwner){ result ->
 
                     val classificationres = result
@@ -285,8 +324,30 @@ class HomeFragment : Fragment() {
     }
 
     private fun startCrop(uri: Uri) {
+        val bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
+        val matrix = Matrix()
+
+        val exif = ExifInterface(requireContext().contentResolver.openInputStream(uri)!!)
+        val orientation = exif.getAttributeInt(
+            ExifInterface.TAG_ORIENTATION,
+            ExifInterface.ORIENTATION_NORMAL
+        )
+
+        when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
+            ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180f)
+            ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270f)
+        }
+
+        val rotatedBitmap = Bitmap.createBitmap(
+            bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true
+        )
+
+        // Save rotated bitmap and continue with UCrop
+        val rotatedUri = saveRotatedBitmap(rotatedBitmap, requireContext())
+
         val destinationUri = Uri.fromFile(File(requireContext().cacheDir, "cropped_image.jpg"))
-        val intent = UCrop.of(uri, destinationUri)
+        val intent = UCrop.of(rotatedUri, destinationUri)
             .withAspectRatio(1f, 1f)
             .withMaxResultSize(1024, 1024)
             .getIntent(requireContext())
@@ -317,8 +378,8 @@ class HomeFragment : Fragment() {
     private fun playAnimation() {
 
         binding.imageView.alpha = 0f
-        binding.textViewClassifyOrderTitle.alpha = 0f
-        binding.textViewClassifyOrderSubtitle.alpha = 0f
+        binding.textViewClassifyOrderTitle?.alpha = 0f
+        binding.textViewClassifyOrderSubtitle?.alpha = 0f
         binding.btnScan.alpha = 0f
 
         val image =

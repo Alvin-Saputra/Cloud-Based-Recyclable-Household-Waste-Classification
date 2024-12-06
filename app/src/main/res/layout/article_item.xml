@@ -34,8 +34,8 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            style="@style/Heading3"
             android:id="@+id/tvArticleTitle"
+            style="@style/Heading3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

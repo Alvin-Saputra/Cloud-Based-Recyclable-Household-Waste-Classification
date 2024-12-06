@@ -32,5 +32,4 @@
     <color name="text_color_invalid">@android:color/holo_red_light</color> <!-- Warna merah -->
     <color name="text_color_valid">?android:textColorPrimary</color> <!-- Warna mengikuti tema -->
 
-
 </resources>

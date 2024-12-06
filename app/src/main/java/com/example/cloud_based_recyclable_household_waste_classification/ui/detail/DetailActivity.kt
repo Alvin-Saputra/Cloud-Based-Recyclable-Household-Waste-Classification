@@ -71,7 +71,7 @@ class DetailActivity : AppCompatActivity() {
 
 //        ViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
-
+//        binding.progressBar2.visibility = View.GONE
         ViewModel.getSession().observe(this) { user ->
             if (!user.isLogin || isTokenExpired(user.exp)) {
                 startActivity(Intent(this, LoginActivity::class.java))
@@ -183,7 +183,6 @@ class DetailActivity : AppCompatActivity() {
         ViewModel.getArticles(className)
 
         ViewModel.articles.observe(this) { articles ->
-            var result = articles
             setArticleData(articles)
 
         }
@@ -250,6 +249,15 @@ class DetailActivity : AppCompatActivity() {
         ViewModel.savingClassfication.observe(this) { data ->
             val result = data
             itemId = data.documentId
+        }
+
+        ViewModel.isLoadingArticles.observe(this){loading->
+            if(loading == true){
+                binding.progressBar2.visibility = View.VISIBLE
+            }
+            else{
+                binding.progressBar2.visibility = View.GONE
+            }
         }
 
         ViewModel.isSuccess.observe(this) { isSuccess ->

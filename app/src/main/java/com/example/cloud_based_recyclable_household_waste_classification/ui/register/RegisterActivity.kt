@@ -50,9 +50,12 @@ class RegisterActivity : AppCompatActivity() {
                 showToast("Password less than 8 Char")
             } else {
                 viewModel.registerRequest(name, email, password)
+                binding.blackBg.apply {
+                    visibility = View.VISIBLE
+                    alpha = 0f
+                    animate().alpha(1f).setDuration(300).start()
+                }
             }
-
-
 
             viewModel.isSuccess.observe(this) { isSuccess ->
 
@@ -66,15 +69,25 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnGoLogin.setOnClickListener{
+            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
+
         viewModel.isLoading.observe(this) { loadingState ->
             if (loadingState == true) {
                 binding.progressBarRegister.visibility = View.VISIBLE
             } else {
                 binding.progressBarRegister.visibility = View.GONE
+                binding.progressBarRegister.visibility = View.GONE
             }
         }
 
         viewModel.message.observe(this) { message ->
+            binding.blackBg.animate().alpha(0f).setDuration(300).withEndAction {
+                binding.blackBg.visibility = View.GONE
+            }.start()
             message?.let {
                 showToast(it)
             }
@@ -113,12 +126,14 @@ class RegisterActivity : AppCompatActivity() {
         ObjectAnimator.ofFloat(binding.textInputPasswordRegister, View.ALPHA, 1f)
             .setDuration(700)
 
-    val buttonLogin =
+    val buttonRegister =
         ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(400)
 
+    val textOr =
+        ObjectAnimator.ofFloat(binding.tvOrLogin, View.ALPHA, 1f).setDuration(400)
 
-    val buttonGoRegister =
-        ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(400)
+    val buttonGoLogin =
+        ObjectAnimator.ofFloat(binding.btnGoLogin, View.ALPHA, 1f).setDuration(400)
 
 
     AnimatorSet().apply {
@@ -128,8 +143,9 @@ class RegisterActivity : AppCompatActivity() {
             nameText,
             emailEditText,
             passwordEditText,
-            buttonLogin,
-            buttonGoRegister
+            buttonRegister,
+            textOr,
+            buttonGoLogin
         )
         start()
     }

@@ -47,7 +47,7 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
                         if (loginResponse != null) {
                             Log.d("LoginRequest", "Login Success: ${loginResponse.message}")
                             _loginValue.value = loginResponse!!
-                            _message.value = loginResponse?.message
+                            _message.value = "Successfully Login"
                         } else {
                             Log.d("LoginRequest", "Login Failed: ${loginResponse?.message}")
                             _message.value = loginResponse?.message
@@ -55,14 +55,14 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
                     } else {
                         _isLoading.value = false
 //                        Log.d("LoginRequest", "Login Failed: ${response.message()}")
-                        _message.value = "Email Has Been Taken or Invalid Password"
+                        _message.value = "Invalid Email or Password"
                     }
                 }
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     _isLoading.value = false
                     Log.e("LoginRequest", "Error: ${t.message}")
-                    _message.value = "Error: No Intenet"
+                    _message.value = "Error Occurred, Try Again"
                 }
             })
         }

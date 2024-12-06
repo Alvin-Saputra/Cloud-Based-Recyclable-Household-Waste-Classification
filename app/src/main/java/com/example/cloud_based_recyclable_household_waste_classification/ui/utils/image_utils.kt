@@ -149,3 +149,11 @@ private fun saveImageToLocalDirectory(context: Context, bitmap: Bitmap): Uri? {
     }
     return imageUri
 }
+
+fun saveRotatedBitmap(bitmap: Bitmap, context:Context): Uri {
+    val file = File(context.cacheDir, "rotated_image.jpg")
+    val outputStream = FileOutputStream(file)
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+    outputStream.close()
+    return Uri.fromFile(file)
+}

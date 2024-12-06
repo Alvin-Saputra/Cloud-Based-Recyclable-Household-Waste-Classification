@@ -41,6 +41,10 @@ class SavedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        _binding = SavedFragmentBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        binding.progressBarSaved.visibility = View.GONE
 
         viewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin || isTokenExpired(user.exp)) {
@@ -56,16 +60,27 @@ class SavedFragment : Fragment() {
         }
 
         viewModel.userSavedClassfication.observe(viewLifecycleOwner){ result ->
-            setData(result)
+                setData(result)
         }
 
+        viewModel.message.observe(viewLifecycleOwner){message ->
+            if(message == "No Data Have Been Saved"){
+                binding.textNull.visibility = View.VISIBLE
+            }
+            else if(message == "Error Occur, Try Again Later"){
+                binding.textNull.text = "Error Occurred, Try Again Later"
+                binding.textNull.visibility = View.VISIBLE
+            }
+        }
 
-
-        _binding = SavedFragmentBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-
-
+        viewModel.isLoading.observe(viewLifecycleOwner){loading ->
+            if(loading == true){
+                binding.progressBarSaved.visibility = View.VISIBLE
+            }
+            else if(loading == false){
+                binding.progressBarSaved.visibility = View.GONE
+            }
+        }
 
         return root
     }

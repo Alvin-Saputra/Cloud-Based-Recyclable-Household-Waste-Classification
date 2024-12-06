@@ -43,8 +43,8 @@ class AccountFragment : Fragment() {
                 navigateToLogin()
             } else {
                 // Update UI with user data
-                binding.tvGreeting.text = "Hello, ${user.username}!"
-                binding.tvEmail.text = "Email: ${user.email}"
+                binding.tvUserName.text = "Hello, ${user.username}!"
+                binding.tvEmail.text = "${user.email}"
             }
         }
     }

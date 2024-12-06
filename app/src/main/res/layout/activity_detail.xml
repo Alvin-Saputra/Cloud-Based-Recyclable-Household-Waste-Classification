@@ -9,32 +9,34 @@
     tools:context=".ui.detail.DetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <FrameLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/ivWasteImage"
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            tools:srcCompat="@tools:sample/avatars" />
+            <ImageView
+                android:id="@+id/ivWasteImage"
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/bottom_gradient" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/avatars" />
 
-    </FrameLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/bottom_gradient" />
+
+        </FrameLayout>
 
 
         <TextView
@@ -136,11 +138,11 @@
                     android:id="@+id/expandable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="@color/background_color"
                     app:cardCornerRadius="12dp">
 
                     <LinearLayout
@@ -148,8 +150,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
-                        android:orientation="vertical"
-                        android:background="@color/base_color_500">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/titleDesc"
@@ -178,10 +179,10 @@
                     android:id="@+id/expandable2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="20dp"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="@color/background_color"
                     app:cardCornerRadius="12dp">
 
                     <LinearLayout
@@ -189,8 +190,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
-                        android:orientation="vertical"
-                        android:background="@color/base_color_500">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/titleRecyclingMethod"
@@ -198,15 +198,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
-                            android:text="@string/titleRecyclingMethod"></TextView>
+                            android:text="@string/titleRecyclingMethod">
+
+                        </TextView>
 
                         <TextView
                             android:id="@+id/tvRecyclingMethod"
-                            style="@style/Parahraph_xm"
+                            style="@style/Parahraph_sm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:visibility="gone"></TextView>
+                            android:visibility="gone">
+
+                        </TextView>
 
                     </LinearLayout>
 
@@ -217,10 +221,10 @@
                     android:id="@+id/expandable3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="20dp"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="@color/background_color"
                     app:cardCornerRadius="12dp">
 
                     <LinearLayout
@@ -228,8 +232,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
-                        android:orientation="vertical"
-                        android:background="@color/base_color_500">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/titleRecyclingOutcome"
@@ -237,15 +240,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
-                            android:text="@string/titleRecyclingOutcome"></TextView>
+                            android:text="@string/titleRecyclingOutcome">
+
+                        </TextView>
 
                         <TextView
                             android:id="@+id/tvRecyclingOutcome"
-                            style="@style/Parahraph_xm"
+                            style="@style/Parahraph_sm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:visibility="gone"></TextView>
+                            android:visibility="gone">
+
+                        </TextView>
 
                     </LinearLayout>
 
@@ -256,10 +263,10 @@
                     android:id="@+id/expandable4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="20dp"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="@color/background_color"
                     app:cardCornerRadius="12dp">
 
                     <LinearLayout
@@ -267,8 +274,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
-                        android:orientation="vertical"
-                        android:background="@color/base_color_500">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/titleBenefits"
@@ -276,28 +282,60 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
-                            android:text="@string/benefits"></TextView>
+                            android:text="@string/benefits">
+
+                        </TextView>
 
                         <TextView
                             android:id="@+id/tvBenefits"
-                            style="@style/Parahraph_xm"
+                            style="@style/Parahraph_sm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:visibility="gone"></TextView>
+                            android:visibility="gone">
+
+                        </TextView>
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <androidx.recyclerview.widget.RecyclerView
+                <TextView
+                    android:id="@+id/titleArticle"
+                    style="@style/Heading1"
+                    android:layout_marginHorizontal="28dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/articles">
+
+                </TextView>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvArticles"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginVertical="16dp"
+                    android:layout_marginHorizontal="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar2"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_gravity="center_horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/rvArticles" />
+
+                </FrameLayout>
 
             </LinearLayout>
         </ScrollView>

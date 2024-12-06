@@ -50,6 +50,7 @@ class SavedViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun getSavedClassification(email: String, token:String) {
         _isLoading.value = true
+        _isSuccess.value = false
         viewModelScope.launch {
             val client = ApiConfig.getApiService().getSavedClassification(email, token)
             client.enqueue(object : Callback<GetUserClassificationResponse> {
@@ -57,27 +58,32 @@ class SavedViewModel(private val repository: UserRepository) : ViewModel() {
                     call: Call<GetUserClassificationResponse>,
                     response: Response<GetUserClassificationResponse>
                 ) {
+                    val responseBody = response.body()
                     if (response.isSuccessful) {
                         _isLoading.value = false
-                        val responseBody = response.body()
+                        _isSuccess.value = true
+
                         if (responseBody != null) {
                             Log.d("getUserSavedClassificationRequest", "Fetch UserSavedClassificationRequest Success")
                             _userSavedClassfication.value = responseBody.listStory
                             _message.value = "Successfully Fetch Data"
                         } else {
+                            _isLoading.value = false
                             Log.d("getUserSavedClassificationRequest", "Failed Fetch Data")
                             _message.value = "Error Occur, Try Again Later"
                         }
                     } else {
+                        _isLoading.value = false
                         Log.d("getUserSavedClassificationRequest", "articleRequest: ${response.message()}")
-                        _message.value = "Error Occur, Try Again Later"
+                        _message.value = "No Data Have Been Saved"
                     }
                 }
 
 
                 override fun onFailure(call: Call<GetUserClassificationResponse>, t: Throwable) {
+                    _isLoading.value = false
                     Log.e("getUserSavedClassificationRequest", "Error: ${t.message}")
-                    _message.value = "Error Occur, Bad Network"
+                    _message.value = "Error Occur, Try Again Later"
                 }
             })
         }

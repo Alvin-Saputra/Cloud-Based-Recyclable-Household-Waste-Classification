@@ -62,10 +62,16 @@ class LoginActivity : AppCompatActivity() {
             } else if (binding.edLoginPassword.text.toString().length < 8) {
                 showToast("Password less than 8 Char")
             } else {
+                binding.blackBg.apply {
+                    visibility = View.VISIBLE
+                    alpha = 0f
+                    animate().alpha(1f).setDuration(300).start()
+                }
                 viewModel.loginRequest(email, password)
             }
 
             viewModel.loginValue.observe(this) { loginResponse ->
+
                 lifecycleScope.launch {
                     viewModel.saveSession(
                         UserModel(
@@ -93,6 +99,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.message.observe(this) { message ->
+            binding.blackBg.animate().alpha(0f).setDuration(300).withEndAction {
+                binding.blackBg.visibility = View.GONE
+            }.start()
             message?.let {
                 showToast(it)
             }

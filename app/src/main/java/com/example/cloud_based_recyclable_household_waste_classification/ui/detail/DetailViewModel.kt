@@ -30,6 +30,9 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isLoadingArticles = MutableLiveData<Boolean>()
+    val isLoadingArticles: LiveData<Boolean> = _isLoadingArticles
+
     private val _articles = MutableLiveData<List<ResultsItem>>()
     val articles: LiveData<List<ResultsItem>> = _articles
 
@@ -44,6 +47,9 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
     private val _isSuccess = MutableLiveData<Boolean>()
     val isSuccess: LiveData<Boolean> = _isSuccess
 
+    private val _isSuccessArticle = MutableLiveData<Boolean>()
+    val isSuccessArticle: LiveData<Boolean> = _isSuccessArticle
+
     private val _isSuccessDelete = MutableLiveData<Boolean>()
     val isSuccessDelete: LiveData<Boolean> = _isSuccessDelete
 
@@ -54,16 +60,31 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
 
 
     fun getArticles(waste_class: String) {
-        _isLoading.value = true
+//        val waste_name = when(waste_class){
+//            "biological" -> "ogranik"
+//            "battery" -> "baterai"
+//            "cardboard" -> "kardus"
+//            "clothes" -> "pakaian"
+//            "glass" -> "kaca"
+//            "metal" -> "logam"
+//            "paper" -> "kertas"
+//            "plastic" -> "plastik"
+//            "shoes" -> "sepatu"
+//            else -> "trash"
+//        }
+
+        _isLoadingArticles.value = true
+        _isSuccessArticle.value = false
         viewModelScope.launch {
-            val client = ApiConfig.getArticleApiService().getAllArticles("pub_598649f14ff9210b611c1c5a8a9ad8ff2ba28", "recycle ${waste_class}")
+            val client = ApiConfig.getArticleApiService().getAllArticles("pub_598649f14ff9210b611c1c5a8a9ad8ff2ba28", "en","${waste_class} waste recycle")
             client.enqueue(object : Callback<ArticleResponse> {
                 override fun onResponse(
                     call: Call<ArticleResponse>,
                     response: Response<ArticleResponse>
                 ) {
                     if (response.isSuccessful) {
-                        _isLoading.value = false
+                        _isLoadingArticles.value = false
+                        _isSuccessArticle.value = true
                         val responseBody = response.body()
                         if (responseBody != null) {
                             Log.d("articleRequest", "Fetch Article Success")
@@ -72,12 +93,14 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
                             Log.d("articleRequest", "Failed Fetch Data")
                         }
                     } else {
+                        _isLoadingArticles.value = false
                         Log.d("articleRequest", "articleRequest: ${response.message()}")
                     }
                 }
 
 
                 override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
+                    _isLoadingArticles.value = false
                     Log.e("articleRequest", "Error: ${t.message}")
                 }
             })
