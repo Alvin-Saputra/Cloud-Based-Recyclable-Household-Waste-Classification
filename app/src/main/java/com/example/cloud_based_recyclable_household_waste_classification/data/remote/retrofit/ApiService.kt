@@ -69,10 +69,9 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<DeleteSavedUserClassificationResponse>
 
-    @GET("latest?")
+    @GET("search?")
     fun getAllArticles(
         @Query("apikey") apikey: String? = null,
-        @Query("language") language: String? = null,
         @Query("q") q: String? = null,
     ): Call<ArticleResponse>
 

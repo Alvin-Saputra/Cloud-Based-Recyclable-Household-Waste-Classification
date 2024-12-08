@@ -10,13 +10,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cloud_based_recyclable_household_waste_classification.R
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ResultsItem
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ArticlesItem
 
-class ArticleAdapter (private val listArticles: List<ResultsItem>) : RecyclerView.Adapter<ArticleAdapter.ListViewHolder>() {
+class ArticleAdapter (private val listArticles: List<ArticlesItem>) : RecyclerView.Adapter<ArticleAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: ResultsItem)
+        fun onItemClicked(data: ArticlesItem)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -37,8 +37,8 @@ class ArticleAdapter (private val listArticles: List<ResultsItem>) : RecyclerVie
     override fun getItemCount(): Int  = listArticles.size
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val titleMaxLength = 40
-        val descMaxLength = 60
+        val titleMaxLength = 60
+        val descMaxLength = 100
         val article = listArticles[position]
 
         val title = article.title?:"No Title"
@@ -57,12 +57,12 @@ class ArticleAdapter (private val listArticles: List<ResultsItem>) : RecyclerVie
         }
 
         Glide.with(holder.itemView.context)
-            .load(article.imageUrl?:"")
+            .load(article.image?:"")
             .into(holder.imgNews)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(article.link)
+            intent.data = Uri.parse(article.url)
             holder.itemView.context.startActivity(intent)
         }
     }

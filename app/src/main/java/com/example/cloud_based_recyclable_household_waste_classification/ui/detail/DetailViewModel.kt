@@ -12,8 +12,8 @@ import com.example.cloud_based_recyclable_household_waste_classification.data.pr
 import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserRepository
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.retrofit.ApiConfig
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ArticleResponse
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ArticlesItem
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.DeleteSavedUserClassificationResponse
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ResultsItem
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.SaveUserClassificationResponse
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.uriToFile
 import kotlinx.coroutines.launch
@@ -33,8 +33,8 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
     private val _isLoadingArticles = MutableLiveData<Boolean>()
     val isLoadingArticles: LiveData<Boolean> = _isLoadingArticles
 
-    private val _articles = MutableLiveData<List<ResultsItem>>()
-    val articles: LiveData<List<ResultsItem>> = _articles
+    private val _articles = MutableLiveData<List<ArticlesItem>>()
+    val articles: LiveData<List<ArticlesItem>> = _articles
 
 
     private val _savingClassfication = MutableLiveData<SaveUserClassificationResponse>()
@@ -60,23 +60,17 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
 
 
     fun getArticles(waste_class: String) {
-//        val waste_name = when(waste_class){
-//            "biological" -> "ogranik"
-//            "battery" -> "baterai"
-//            "cardboard" -> "kardus"
-//            "clothes" -> "pakaian"
-//            "glass" -> "kaca"
-//            "metal" -> "logam"
-//            "paper" -> "kertas"
-//            "plastic" -> "plastik"
-//            "shoes" -> "sepatu"
-//            else -> "trash"
-//        }
+
+         var q = waste_class
+
+        if(waste_class == "biological"){
+            q = "organic"
+        }
 
         _isLoadingArticles.value = true
         _isSuccessArticle.value = false
         viewModelScope.launch {
-            val client = ApiConfig.getArticleApiService().getAllArticles("pub_598649f14ff9210b611c1c5a8a9ad8ff2ba28", "en","${waste_class} waste recycle")
+            val client = ApiConfig.getArticleApiService().getAllArticles("2e6101f80ea06cf29ffa8025eaf626fb", "$q AND (waste OR dangers OR recycle OR recycling OR environment)")
             client.enqueue(object : Callback<ArticleResponse> {
                 override fun onResponse(
                     call: Call<ArticleResponse>,
@@ -88,7 +82,7 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
                         val responseBody = response.body()
                         if (responseBody != null) {
                             Log.d("articleRequest", "Fetch Article Success")
-                            _articles.value = responseBody.results
+                            _articles.value = responseBody.articles
                         } else {
                             Log.d("articleRequest", "Failed Fetch Data")
                         }

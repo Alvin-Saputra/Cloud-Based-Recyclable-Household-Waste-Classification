@@ -12,21 +12,21 @@
     <color name="beige">#FFFDD0</color>"
 
     <!-- Base Color -->
-    <color name="base_color_600">#40C118</color>
+    <color name="base_color_600">#1AD14B</color>
 
     <!-- Gradation with White -->
-    <color name="base_color_500">#53C72F</color>
-    <color name="base_color_400">#66CD46</color>
-    <color name="base_color_300">#79D35D</color>
-    <color name="base_color_200">#8CDA74</color>
-    <color name="base_color_100">#A0E08C</color>
+    <color name="base_color_500">#30D65D</color>
+    <color name="base_color_400">#48DA6F</color>
+    <color name="base_color_300">#5EDF81</color>
+    <color name="base_color_200">#76E393</color>
+    <color name="base_color_100">#8DE8A5</color>
 
     <!-- Gradation with Black -->
-    <color name="base_color_700">#3AAE16</color>
-    <color name="base_color_800">#339A13</color>
-    <color name="base_color_900">#46952E</color>
-    <color name="base_color_1000">#26740E</color>
-    <color name="base_color_1100">#20600C</color>
+    <color name="base_color_700">#17BD44</color>
+    <color name="base_color_800">#15A73C</color>
+    <color name="base_color_900">#129335</color>
+    <color name="base_color_1000">#107D2D</color>
+    <color name="base_color_1100">#0A541E</color>
 
     <!-- Warna untuk teks custom -->
     <color name="text_color_invalid">@android:color/holo_red_light</color> <!-- Warna merah -->

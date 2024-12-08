@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cloud_based_recyclable_household_waste_classification.R
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ListStoryItem
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ResultsItem
+
 import com.example.cloud_based_recyclable_household_waste_classification.ui.detail.DetailActivity
 
 class SavedAdapter (private val listSavedItem: List<ListStoryItem>) : RecyclerView.Adapter<SavedAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: ResultsItem)
+        fun onItemClicked(data: ListStoryItem)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {

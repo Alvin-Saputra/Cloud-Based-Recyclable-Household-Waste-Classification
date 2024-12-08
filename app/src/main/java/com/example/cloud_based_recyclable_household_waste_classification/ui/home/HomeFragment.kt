@@ -69,33 +69,33 @@ class HomeFragment : Fragment() {
             ActivityResultContracts.RequestMultiplePermissions()
         ) { permissions ->
             if (permissions[REQUIRED_PERMISSION_CAMERA] == true) {
-                Toast.makeText(requireContext(), "Camera permission granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Camera permission granted", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Camera permission denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Camera permission denied", Toast.LENGTH_SHORT).show()
             }
 
             if (permissions[REQUIRED_PERMISSION_WRITE_EXTERNAL_STORAGE] == true || permissions[REQUIRED_PERMISSION_READ_EXTERNAL_STORAGE] == true) {
-                Toast.makeText(requireContext(), "Storage permission granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Storage permission granted", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Storage permission denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Storage permission denied", Toast.LENGTH_SHORT).show()
             }
 
             if (permissions[REQUIRED_PERMISSION_READ_MEDIA_IMAGES] == true) {
-                Toast.makeText(requireContext(), "Read Media Images permission granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Read Media Images permission granted", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Read Media Images denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Read Media Images denied", Toast.LENGTH_SHORT).show()
             }
 
             if (permissions[REQUIRED_PERMISSION_ACCESS_FINE_LOCATION] == true) {
-                Toast.makeText(requireContext(), "Access fine location permission granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Access fine location permission granted", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Access fine location denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Access fine location denied", Toast.LENGTH_SHORT).show()
             }
 
             if (permissions[REQUIRED_PERMISSION_ACCESS_COARSE_LOCATION] == true) {
-                Toast.makeText(requireContext(), "Access coarse location permission granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Access coarse location permission granted", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Access coarse location denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Access coarse location denied", Toast.LENGTH_SHORT).show()
             }
         }
 

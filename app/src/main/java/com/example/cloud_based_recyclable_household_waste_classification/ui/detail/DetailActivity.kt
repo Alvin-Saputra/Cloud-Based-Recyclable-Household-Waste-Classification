@@ -20,7 +20,7 @@ import com.bumptech.glide.Glide
 import com.example.cloud_based_recyclable_household_waste_classification.ui.main.MainActivity
 import com.example.cloud_based_recyclable_household_waste_classification.R
 import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserViewModelFactory
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ResultsItem
+import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ArticlesItem
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.ActivityDetailBinding
 import com.example.cloud_based_recyclable_household_waste_classification.ui.home.HomeFragment
 import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
@@ -283,7 +283,7 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    private fun setArticleData(listEvents: List<ResultsItem>) {
+    private fun setArticleData(listEvents: List<ArticlesItem>) {
         val list = listEvents
 
         binding.rvArticles.layoutManager =
