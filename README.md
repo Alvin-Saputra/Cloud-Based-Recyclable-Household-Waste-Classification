@@ -158,6 +158,39 @@ This app follows the **MVVM (Model-View-ViewModel)** architecture pattern to ens
 
 This architecture helps separate concerns, making the app easier to maintain, test, and extend.
 
+---
+
+## **Screenshots**
+
+Here are some screenshots showcasing the features of the app:
+
+### **Authentication(Login/Register)**
+<img src="https://github.com/user-attachments/assets/5d53f5f5-1304-42e5-83d1-add37efac331" width="300"/>
+<img src="https://github.com/user-attachments/assets/aa30154d-70ef-45d2-812b-c209b48efc67" width="300"/>
+
+### **Home Page**
+<img src="https://github.com/user-attachments/assets/74599a6d-6051-4d03-a537-1a038770b713" width="300"/>
+<img src="https://github.com/user-attachments/assets/53980dd9-d166-4f52-8250-3e6d51508389" width="300"/>
+<img src="https://github.com/user-attachments/assets/cb023fb5-df96-420c-a98b-be5f1f647506" width="300"/>
+<img src="https://github.com/user-attachments/assets/2c92ef2f-b768-490b-98b2-e5f0dd10ff5d" width="300"/>
+<img src="https://github.com/user-attachments/assets/0903b6dc-692a-4cf8-976f-55764878fa79" width="300"/>
+
+### **Detail Page**
+<img src="https://github.com/user-attachments/assets/21410c28-a7c5-4180-bab3-0342a3b2e4d9" width="300"/>
+<img src="https://github.com/user-attachments/assets/8ca5b4c2-136d-465d-a150-f009a5c6c237" width="300"/>
+
+### **Saved Page**
+<img src="https://github.com/user-attachments/assets/09706ba8-e022-439b-a311-1edcd9e9378e" width="300"/>
+
+### **Map Page**
+<img src="https://github.com/user-attachments/assets/83f9dbdc-200f-449c-8248-24433c40f04c" width="300"/>
+
+### **Account Page**
+<img src="https://github.com/user-attachments/assets/7e8d5f94-3f62-48ae-a1d5-0f3cbb084394" width="300"/>
+
+---
+
+
 ## **How It Works**
 
 The app works in five main steps:
