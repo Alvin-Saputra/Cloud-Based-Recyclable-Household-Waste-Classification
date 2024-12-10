@@ -44,7 +44,7 @@
             style="@style/Heading3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
+            android:layout_marginBottom="84dp"
             android:drawableTop="@drawable/double_arrow_up_24"
             android:text="Swipe Up"
             android:textColor="@color/white"
@@ -57,7 +57,7 @@
             style="@style/HeadingXL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="228dp"
+            android:layout_marginBottom="248dp"
             android:text="@string/waste_name"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/frameLayout2"
@@ -65,16 +65,26 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/tv_classification_percentage"
-            style="@style/Heading1"
+            android:id="@+id/tv_classification_recyclable"
+            style="@style/Heading3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:text="@string/percentage"
+            android:text="@string/recyclable"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/tv_waste_name"
             app:layout_constraintStart_toStartOf="@+id/tv_waste_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_waste_name" />
+
+        <TextView
+            android:id="@+id/tv_classification_percentage"
+            style="@style/Heading1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/percentage"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/tv_waste_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_waste_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_classification_recyclable" />
 
         <ImageButton
             android:id="@+id/btnReturn"
@@ -126,7 +136,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -321,9 +332,20 @@
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="16dp"
+                        android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="96dp"
+                        android:text="Failed show articles, check your connection"
+                        android:visibility="gone">
+                    </TextView>
 
                     <ProgressBar
                         android:id="@+id/progressBar2"
@@ -331,7 +353,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="72dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/rvArticles" />

@@ -13,8 +13,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.cloud_based_recyclable_household_waste_classification.ui.main.MainActivity
@@ -22,10 +20,7 @@ import com.example.cloud_based_recyclable_household_waste_classification.R
 import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserViewModelFactory
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ArticlesItem
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.ActivityDetailBinding
-import com.example.cloud_based_recyclable_household_waste_classification.ui.home.HomeFragment
 import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
-import com.example.cloud_based_recyclable_household_waste_classification.ui.saved.SavedFragment
-import com.example.cloud_based_recyclable_household_waste_classification.ui.saved.SavedViewModel
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.downloadImageAndSave
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import java.util.Locale
@@ -33,7 +28,7 @@ import java.util.Locale
 class DetailActivity : AppCompatActivity() {
 
     private val ViewModel by viewModels<DetailViewModel> {
-        UserViewModelFactory.getInstance(this)
+        UserViewModelFactory.getInstance(this, application)
     }
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>
@@ -82,18 +77,31 @@ class DetailActivity : AppCompatActivity() {
             }
         }
         val bundle = intent.extras
+
         binding.btnReturn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java).apply {
-                putExtra("fragmentToOpen", "SavedFragment")
+            if(bundle?.getString(KEY_SOURCE) == SOURCE_HOME_FRAGMENT){
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra("fragmentToOpen", "HomeFragment")
+                }
+                startActivity(intent)
+                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                finish()
             }
-            startActivity(intent)
-            finish()
+            else if(bundle?.getString(KEY_SOURCE) == SOURCE_SAVED_ADAPTER){
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra("fragmentToOpen", "SavedFragment")
+                }
+                startActivity(intent)
+                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                finish()
+            }
+
         }
 
 // ====== Bottom Sheet =====
         bottomSheetBehavior = BottomSheetBehavior.from(binding.sheet)
         bottomSheetBehavior.apply {
-            peekHeight = 100 // Height when partially expanded
+            peekHeight = 200 // Height when partially expanded
             state = BottomSheetBehavior.STATE_COLLAPSED // Initial state
         }
 
@@ -152,9 +160,15 @@ class DetailActivity : AppCompatActivity() {
                 probability = bundle.getDouble(KEY_PROB)
                 className = bundle.getString(KEY_CLASSNAME) ?: " "
                 binding.ivWasteImage.setImageURI(imageUri)
-                binding.tvWasteName.text = className
+                binding.tvWasteName.text = className.capitalizeFirstLetter()
                 binding.tvClassificationPercentage.text =
                     String.format(Locale.getDefault(), "%.2f%%", probability * 100)
+                if(className == "trash"){
+                    binding.tvClassificationRecyclable.text = "Non-Recyclable"
+                }
+                else{
+                    binding.tvClassificationRecyclable.text = "Recyclable"
+                }
 
             } else if ((source == SOURCE_SAVED_ADAPTER)) {
                 imageUrl = bundle.getString(KEY_URL) ?: ""
@@ -169,9 +183,17 @@ class DetailActivity : AppCompatActivity() {
                 Glide.with(this)
                     .load(imageUrl)
                     .into(binding.ivWasteImage)
-                binding.tvWasteName.text = className
+                binding.tvWasteName.text = className.capitalizeFirstLetter()
                 binding.tvClassificationPercentage.text =
                     String.format(Locale.getDefault(), "%.2f%%", probability * 100)
+
+
+                if(className == "trash"){
+                    binding.tvClassificationRecyclable.text = "Non-Recyclable"
+                }
+                else{
+                    binding.tvClassificationRecyclable.text = "Recyclable"
+                }
             }
 
             setWasteInfo(className)
@@ -180,10 +202,14 @@ class DetailActivity : AppCompatActivity() {
 
 //     ======= Articles=======
 
+
+
         ViewModel.getArticles(className)
+        binding.progressBar2.visibility = View.VISIBLE
 
         ViewModel.articles.observe(this) { articles ->
             setArticleData(articles)
+            binding.progressBar2.visibility = View.GONE
 
         }
 //     ======= Articles=======
@@ -204,21 +230,21 @@ class DetailActivity : AppCompatActivity() {
                     imageUri
                 )
                 activeSaved = true
-                binding.btnSave.setImageResource(R.drawable.ic_bookmark_active)
+//                binding.btnSave.setImageResource(R.drawable.ic_bookmark_active)
             }
 
             else if (activeSaved == true && bundle?.getString(KEY_SOURCE) == SOURCE_HOME_FRAGMENT) {
                 // Hapus data
                 ViewModel.deleteClassificationResult(email ?: "", itemId, token ?: "")
                 activeSaved = false
-                binding.btnSave.setImageResource(R.drawable.ic_bookmark_inactive)
+//                binding.btnSave.setImageResource(R.drawable.ic_bookmark_inactive)
             }
 
 
             else if (activeSaved == true && bundle?.getString(KEY_SOURCE) == SOURCE_SAVED_ADAPTER) {
                 ViewModel.deleteClassificationResult(email ?: "", itemId, token ?: "")
                 activeSaved = false
-                binding.btnSave.setImageResource(R.drawable.ic_bookmark_inactive)
+//                binding.btnSave.setImageResource(R.drawable.ic_bookmark_inactive)
             }
 
             else if (activeSaved == false && bundle?.getString(KEY_SOURCE) == SOURCE_SAVED_ADAPTER) {
@@ -235,7 +261,7 @@ class DetailActivity : AppCompatActivity() {
                             it
                         )
                         activeSaved = true
-                        binding.btnSave.setImageResource(R.drawable.ic_bookmark_active)
+//                        binding.btnSave.setImageResource(R.drawable.ic_bookmark_active)
                     } ?: run {
                     }
                 }
@@ -252,27 +278,51 @@ class DetailActivity : AppCompatActivity() {
         }
 
         ViewModel.isLoadingArticles.observe(this){loading->
-            if(loading == true){
-                binding.progressBar2.visibility = View.VISIBLE
+             if (loading == true){
+            binding.progressBar2.visibility = View.VISIBLE
+
+            } else if (loading == false){
+                 binding.progressBar2.visibility =  View.GONE
+//
+            }
+        }
+
+        ViewModel.isSuccessArticle.observe(this){success->
+            if(success == false){
+                binding.tvError.visibility = View.VISIBLE
             }
             else{
-                binding.progressBar2.visibility = View.GONE
+                binding.tvError.visibility = View.GONE
             }
         }
 
         ViewModel.isSuccess.observe(this) { isSuccess ->
             if (isSuccess == true) {
                 showToast("Success Saving")
-                // Pembaruan UI jika perlu
+                binding.btnSave.setImageResource(R.drawable.ic_bookmark_active)
             }
+
+//            else if (isSuccess == false) {
+//                showToast("Failed, Check Your Internet Connection")
+//            }
         }
 
         ViewModel.isSuccessDelete.observe(this) { isSuccess ->
             if (isSuccess == true) {
                 showToast("Success Delete")
-                // Pembaruan UI jika perlu
+                binding.btnSave.setImageResource(R.drawable.ic_bookmark_inactive)
             }
+
+//            else if (isSuccess == false) {
+//                showToast("Failed, Check Your Internet Connection")
+//            }
         }
+
+        ViewModel.message.observe(this){
+            message->
+            showToast(message)
+        }
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -281,6 +331,12 @@ class DetailActivity : AppCompatActivity() {
             insets
         }
 
+    }
+
+    private fun String.capitalizeFirstLetter(): String {
+        return this.lowercase().replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+        }
     }
 
     private fun setArticleData(listEvents: List<ArticlesItem>) {
@@ -331,30 +387,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setWasteInfo(className: String) {
-        binding.tvDescription.text =
-            getString(resources.getIdentifier("${className}_description", "string", packageName))
-        binding.tvBenefits.text = getString(
-            resources.getIdentifier(
-                "${className}_recycling_benefits",
-                "string",
-                packageName
-            )
-        )
-        binding.tvRecyclingMethod.text = getString(
-            resources.getIdentifier(
-                "${className}_recycling_method",
-                "string",
-                packageName
-            )
-        )
-        binding.tvRecyclingOutcome.text = getString(
-            resources.getIdentifier(
-                "${className}_recycling_outcome",
-                "string",
-                packageName
-            )
-        )
-
 
         if (className == "trash") {
             binding.tvDescription.text = getString(
@@ -382,6 +414,37 @@ class DetailActivity : AppCompatActivity() {
             binding.titleRecyclingMethod.text = "Disposal Suggestion"
             binding.titleRecyclingOutcome.text = "How To Reduce"
         }
+
+        else{
+            binding.tvDescription.text =
+                getString(resources.getIdentifier("${className}_description", "string", packageName))
+            binding.tvBenefits.text = getString(
+                resources.getIdentifier(
+                    "${className}_recycling_benefits",
+                    "string",
+                    packageName
+                )
+            )
+            binding.tvRecyclingMethod.text = getString(
+                resources.getIdentifier(
+                    "${className}_recycling_method",
+                    "string",
+                    packageName
+                )
+            )
+            binding.tvRecyclingOutcome.text = getString(
+                resources.getIdentifier(
+                    "${className}_recycling_outcome",
+                    "string",
+                    packageName
+                )
+            )
+        }
+
+
+
+
+
 
     }
 

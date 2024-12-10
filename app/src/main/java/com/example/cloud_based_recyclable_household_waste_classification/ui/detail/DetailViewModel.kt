@@ -68,7 +68,6 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
         }
 
         _isLoadingArticles.value = true
-        _isSuccessArticle.value = false
         viewModelScope.launch {
             val client = ApiConfig.getArticleApiService().getAllArticles("2e6101f80ea06cf29ffa8025eaf626fb", "$q AND (waste OR dangers OR recycle OR recycling OR environment)")
             client.enqueue(object : Callback<ArticleResponse> {
@@ -78,15 +77,18 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
                 ) {
                     if (response.isSuccessful) {
                         _isLoadingArticles.value = false
-                        _isSuccessArticle.value = true
+
                         val responseBody = response.body()
                         if (responseBody != null) {
+                            _isSuccessArticle.value = true
                             Log.d("articleRequest", "Fetch Article Success")
                             _articles.value = responseBody.articles
                         } else {
+                            _isSuccessArticle.value = false
                             Log.d("articleRequest", "Failed Fetch Data")
                         }
                     } else {
+                        _isSuccessArticle.value = false
                         _isLoadingArticles.value = false
                         Log.d("articleRequest", "articleRequest: ${response.message()}")
                     }
@@ -94,6 +96,7 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
 
 
                 override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
+                    _isSuccessArticle.value = false
                     _isLoadingArticles.value = false
                     Log.e("articleRequest", "Error: ${t.message}")
                 }
@@ -137,13 +140,13 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
                             else{
                                 Log.e("SavingClassification", "Response body is null")
                                 _isSuccess.value = false
-                                _message.value = "Response body is null"
+                                _message.value = "Error Occurred, Try Again"
                             }
                         }
                         else {
                             Log.e("SavingClassification", "Response body is null")
                             _isSuccess.value = false
-                            _message.value = "Response body is null"
+                            _message.value = "Failed, Check Your Internet Connection"
                         }
                     }
 
@@ -151,7 +154,7 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
                         Log.e("SavingClassification", "onFailure: ${t.message}")
                         _isLoading.value = false
                         _isSuccess.value = false
-                        _message.value = "onFailure: ${t.message}"
+                        _message.value = "Failed, Check Your Internet Connection"
                     }
                 })
             }
@@ -175,22 +178,21 @@ class DetailViewModel (private val repository: UserRepository): ViewModel() {
                         _isSuccessDelete.value = true
                         val responseBody = response.body()
                         if (responseBody != null) {
-                            Log.d("articleRequest", "Fetch Article Success")
-                            _message.value = responseBody.message
+                            Log.d("DeleteClassification", "Delete Classification Success")
                         } else {
-                            Log.d("articleRequest", "Failed Fetch Data")
+                            Log.d("DeleteClassification", "Error")
                             _message.value = "Error Occurred, Try Again"
                         }
                     } else {
-                        Log.d("articleRequest", "articleRequest: ${response.message()}")
-                        _message.value = "Error Occurred, Try Again"
+                        Log.d("DeleteClassification", "DeleteClassification: ${response.message()}")
+                        _message.value = "Failed, Check Your Internet Connection"
                     }
                 }
 
 
                 override fun onFailure(call: Call<DeleteSavedUserClassificationResponse>, t: Throwable) {
                     Log.e("articleRequest", "Error: ${t.message}")
-                    _message.value = "Error Occurred, Try Again"
+                    _message.value = "Failed, Check Your Internet Connection"
                 }
             })
         }

@@ -13,6 +13,7 @@
     <string name="return_button">Return</string>
     <string name="save_button">Save</string>
     <string name="percentage">0%</string>
+    <string name="recyclable">text recyclable</string>
 
     <!-- Header Strings -->
     <string name="description_header">Description</string>
@@ -76,9 +77,9 @@
 
 
     <!-- White Glass -->
-    <string name="white_glass_description">Glass is waste from various types of bottles, glasses, pharmaceutical containers, window glass, etc., that are difficult to decompose in landfills and can pollute the environment. However, due to its durable nature and the ability to be recycled without losing quality, proper recycling can reduce its impact and support environmental sustainability.
+    <string name="glass_description">Glass is waste from various types of bottles, glasses, pharmaceutical containers, window glass, etc., that are difficult to decompose in landfills and can pollute the environment. However, due to its durable nature and the ability to be recycled without losing quality, proper recycling can reduce its impact and support environmental sustainability.
 </string>
-    <string name="white_glass_recycling_method">
+    <string name="glass_recycling_method">
     Glass can be recycled by taking it to a specialized recycling center or drop-off box. The recycling process for glass includes:\n
     • Collect used bottles or glass containers and separate them from other materials like metal and plastic.\n
     • Wash the glass to remove liquid residues, labels, and dirt.\n
@@ -86,8 +87,8 @@
     • Break the glass into small pieces known as cullets.\n
     • Melt the cullet in a furnace to create liquid glass, which is then molded into new products.
     </string>
-    <string name="white_glass_recycling_benefits">Saves energy required to produce new glass, reduces the need for raw materials like silica sand, and minimizes environmental impact.</string>
-    <string name="white_glass_recycling_outcome">New glass bottles, glassware, windows, or decorative items.</string>
+    <string name="glass_recycling_benefits">Saves energy required to produce new glass, reduces the need for raw materials like silica sand, and minimizes environmental impact.</string>
+    <string name="glass_recycling_outcome">New glass bottles, glassware, windows, or decorative items.</string>
 
     <!-- Metal -->
     <string name="metal_description">Metal includes various types such as aluminum, steel, and copper, commonly used in industrial and consumer products. Metal waste takes a long time to decompose and can pollute the environment if improperly managed.</string>

@@ -89,4 +89,11 @@
         <item name="colorOnSecondary">@color/black</item>  <!-- On Secondary Color -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item> <!-- Status Bar Color -->
     </style>
+
+    <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/base_color_700</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_splash_screen</item>
+        <item name="postSplashScreenTheme">@style/Theme.CloudBasedRecyclableHouseholdWasteClassification</item>
+    </style>
+
 </resources>

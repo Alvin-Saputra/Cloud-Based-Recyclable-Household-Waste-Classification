@@ -31,6 +31,7 @@ import com.example.cloud_based_recyclable_household_waste_classification.data.pr
 import com.example.cloud_based_recyclable_household_waste_classification.ui.detail.DetailActivity
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.FragmentHomeBinding
 import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
+import com.example.cloud_based_recyclable_household_waste_classification.ui.main.MainActivity
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.getImageUri
 import com.example.cloud_based_recyclable_household_waste_classification.ui.utils.saveRotatedBitmap
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -51,7 +52,7 @@ class HomeFragment : Fragment() {
 
 
     private val viewModel by viewModels<HomeViewModel> {
-        UserViewModelFactory.getInstance(requireContext())
+        UserViewModelFactory.getInstance(requireContext(), requireActivity().application)
     }
 
     private var _binding: FragmentHomeBinding? = null
@@ -246,6 +247,7 @@ class HomeFragment : Fragment() {
                         intent.putExtra(DetailActivity.KEY_CLASSNAME, result.className)
                         intent.putExtra(DetailActivity.KEY_URI, viewModel.currentImageUri)
                         intent.putExtra(DetailActivity.KEY_SOURCE, DetailActivity.SOURCE_HOME_FRAGMENT)
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
                     }
 
@@ -299,8 +301,8 @@ class HomeFragment : Fragment() {
         ActivityResultContracts.TakePicture()
     ) { isSuccess ->
         if (isSuccess) {
-            showImage()
             startCrop(viewModel.currentImageUri!!)
+            showImage()
             binding.btnClassify.visibility = View.VISIBLE
         }
     }
@@ -353,6 +355,13 @@ class HomeFragment : Fragment() {
             .getIntent(requireContext())
 
         cropImage.launch(intent)
+
+//        val destinationUri = Uri.fromFile(File(requireContext().cacheDir, "cropped_image.jpg"))
+//        val intent = UCrop.of(uri, destinationUri)
+//            .withAspectRatio(1f, 1f)
+//            .withMaxResultSize(1024, 1024)
+//            .getIntent(requireContext())
+//        cropImage.launch(intent)
     }
 
 
@@ -405,4 +414,5 @@ class HomeFragment : Fragment() {
             start()
         }
     }
+
 }

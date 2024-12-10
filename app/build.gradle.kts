@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1"
 }
 
@@ -55,6 +57,7 @@ dependencies {
     implementation(libs.androidx.datastore.core.android)
     implementation (libs.androidx.exifinterface)
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation ("androidx.core:core-splashscreen:1.0.0")
 
 //    maps
     implementation(libs.play.services.maps)
@@ -76,4 +79,9 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+
+//    room
+    implementation("androidx.room:room-ktx:2.5.0")
+    implementation("androidx.room:room-runtime:2.5.0")
+    ksp("androidx.room:room-compiler:2.5.0")
 }

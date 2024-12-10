@@ -1,5 +1,6 @@
 package com.example.cloud_based_recyclable_household_waste_classification.data.pref
 
+import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,7 +12,7 @@ import com.example.cloud_based_recyclable_household_waste_classification.ui.logi
 import com.example.cloud_based_recyclable_household_waste_classification.ui.main.MainViewModel
 import com.example.cloud_based_recyclable_household_waste_classification.ui.saved.SavedViewModel
 
-class UserViewModelFactory(private val repository: UserRepository) :
+class UserViewModelFactory(private val repository: UserRepository,  private val application: Application) :
     ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
@@ -22,7 +23,7 @@ class UserViewModelFactory(private val repository: UserRepository) :
             }
 
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
-                MainViewModel(repository) as T
+                MainViewModel(repository, application) as T
             }
 
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
@@ -30,12 +31,12 @@ class UserViewModelFactory(private val repository: UserRepository) :
             }
 
             modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
-                AccountViewModel(repository) as T
+                AccountViewModel(repository, application) as T
             }
 
 
             modelClass.isAssignableFrom(SavedViewModel::class.java) -> {
-                SavedViewModel(repository) as T
+                SavedViewModel(repository, application) as T
             }
 
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
@@ -52,10 +53,10 @@ class UserViewModelFactory(private val repository: UserRepository) :
         private var INSTANCE: UserViewModelFactory? = null
 
         @JvmStatic
-        fun getInstance(context: Context): UserViewModelFactory {
+        fun getInstance(context: Context, application: Application): UserViewModelFactory {
             if (INSTANCE == null) {
                 synchronized(UserViewModelFactory::class.java) {
-                    INSTANCE = UserViewModelFactory(Injection.provideUserRepository(context))
+                    INSTANCE = UserViewModelFactory(Injection.provideUserRepository(context), application)
                 }
             }
             return INSTANCE as UserViewModelFactory

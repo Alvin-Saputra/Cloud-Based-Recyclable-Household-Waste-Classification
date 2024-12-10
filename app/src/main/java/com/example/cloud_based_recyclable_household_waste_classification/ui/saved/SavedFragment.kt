@@ -1,22 +1,16 @@
 package com.example.cloud_based_recyclable_household_waste_classification.ui.saved
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cloud_based_recyclable_household_waste_classification.data.pref.UserViewModelFactory
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ListStoryItem
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.SavedFragmentBinding
-import com.example.cloud_based_recyclable_household_waste_classification.ui.detail.ArticleAdapter
-import com.example.cloud_based_recyclable_household_waste_classification.ui.detail.DetailActivity
-import com.example.cloud_based_recyclable_household_waste_classification.ui.home.HomeViewModel
 import com.example.cloud_based_recyclable_household_waste_classification.ui.login.LoginActivity
 
 class SavedFragment : Fragment() {
@@ -31,7 +25,7 @@ class SavedFragment : Fragment() {
     private var token: String? = null
 
     private val viewModel by viewModels<SavedViewModel> {
-        UserViewModelFactory.getInstance(requireContext())
+        UserViewModelFactory.getInstance(requireContext(), requireActivity().application)
     }
 
     override fun onCreateView(
@@ -62,13 +56,26 @@ class SavedFragment : Fragment() {
                 setData(result)
         }
 
+        viewModel.dbUserSavedClassfication.observe(viewLifecycleOwner) { result ->
+            val listStoryItems = viewModel.convertToListStoryItem(result)
+            setData(listStoryItems)
+        }
+
         viewModel.message.observe(viewLifecycleOwner){message ->
-            if(message == "No Data Have Been Saved"){
+            if(message == "No data found"){
+                binding.textNull.text = "No Data Have Been Saved"
                 binding.textNull.visibility = View.VISIBLE
             }
-            else if(message == "Error Occur, Try Again Later"){
-                binding.textNull.text = "Error Occurred, Try Again Later"
+
+            if(message == "No Data Have Been Saved"){
+                binding.textNull.text = "No Data Have Been Saved"
                 binding.textNull.visibility = View.VISIBLE
+            }
+
+            else if(message == "Error Occur, Try Again Later"){
+//                binding.textNull.text = "Error Occurred, Try Again Later"
+//                binding.textNull.visibility = View.VISIBLE
+                showToast("You're currently offline. Viewing offline data.")
             }
         }
 

@@ -17,7 +17,7 @@ class AccountFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<AccountViewModel> {
-        UserViewModelFactory.getInstance(requireContext())
+        UserViewModelFactory.getInstance(requireContext(), requireActivity().application)
     }
 
     override fun onCreateView(
@@ -39,7 +39,8 @@ class AccountFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.getSession().observe(viewLifecycleOwner) { user ->
-            if (!user.isLogin) {
+            if (!user.isLogin || isTokenExpired(user.exp)) {
+                viewModel.DeleteAllFromDatabase()
                 navigateToLogin()
             } else {
                 // Update UI with user data
@@ -52,6 +53,14 @@ class AccountFragment : Fragment() {
     private fun navigateToLogin() {
         startActivity(Intent(requireContext(), LoginActivity::class.java))
         requireActivity().finish()
+    }
+
+    fun isTokenExpired(expirationTime: Int): Boolean {
+        // Waktu saat ini dalam detik (timestamp UNIX)
+        val currentTime = System.currentTimeMillis() / 1000
+
+        // Periksa apakah waktu saat ini lebih besar dari waktu kedaluwarsa (exp)
+        return currentTime > expirationTime
     }
 
     override fun onDestroyView() {

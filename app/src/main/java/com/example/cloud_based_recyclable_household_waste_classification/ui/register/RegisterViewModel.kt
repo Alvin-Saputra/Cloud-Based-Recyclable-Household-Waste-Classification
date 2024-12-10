@@ -55,12 +55,12 @@ class RegisterViewModel: ViewModel() {
                         _isLoading.value = false
                         _isSuccess.value = false
                         Log.d("RegisterRequest", "Register Failed: ${response.message()}")
-                        _message.value = "Email Has Been Taken"
+                        _message.value = "Username or Email Has Been Taken"
                     }
                 }
 
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                    Log.e("LoginRequest", "Error: ${t.message}")
+                    Log.e("RegisterRequest", "Error: ${t.message}")
                     _isSuccess.value = false
                     _isLoading.value = false
                     _message.value = "Error: No Internet"

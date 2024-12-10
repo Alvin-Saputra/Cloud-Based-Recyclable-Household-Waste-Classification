@@ -1,5 +1,6 @@
 package com.example.cloud_based_recyclable_household_waste_classification.ui.saved
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.example.cloud_based_recyclable_household_waste_classification.R
 import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.ListStoryItem
 
 import com.example.cloud_based_recyclable_household_waste_classification.ui.detail.DetailActivity
+import java.util.Locale
 
 class SavedAdapter (private val listSavedItem: List<ListStoryItem>) : RecyclerView.Adapter<SavedAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -41,7 +43,7 @@ class SavedAdapter (private val listSavedItem: List<ListStoryItem>) : RecyclerVi
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val item = listSavedItem[position]
-        holder.tvTitle.text = item.className
+        holder.tvTitle.text = item.className.capitalizeFirstLetter()
         holder.tvSubtitle.text = String.format("%.2f%%", item.probability * 100)
 
         // Load image using Glide
@@ -61,6 +63,12 @@ class SavedAdapter (private val listSavedItem: List<ListStoryItem>) : RecyclerVi
             holder.itemView.context.startActivity(intent)
         }
 
+    }
+
+    private fun String.capitalizeFirstLetter(): String {
+        return this.lowercase().replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+        }
     }
 
 
