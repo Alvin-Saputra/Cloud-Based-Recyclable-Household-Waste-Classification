@@ -63,7 +63,7 @@ class RegisterViewModel: ViewModel() {
                     Log.e("RegisterRequest", "Error: ${t.message}")
                     _isSuccess.value = false
                     _isLoading.value = false
-                    _message.value = "Error: No Internet"
+                    _message.value = "Error Occurred, Try Again"
                 }
             })
         }

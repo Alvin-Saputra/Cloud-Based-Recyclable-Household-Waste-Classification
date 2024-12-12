@@ -47,7 +47,7 @@ class SavedViewModel(private val repository: UserRepository, application: Applic
         return repository.getSession().asLiveData()
     }
 
-    private fun loadEventsFromDatabase() {
+    private fun loadItemsFromDatabase() {
         viewModelScope.launch(Dispatchers.IO) {
             val item = eventDao.getAll()
             _dbUserSavedClassfication.postValue(item)
@@ -95,7 +95,7 @@ class SavedViewModel(private val repository: UserRepository, application: Applic
                         _isLoading.value = false
                         Log.d("getUserSavedClassificationRequest", "articleRequest: ${response.message()}")
                         _message.value = "No Data Have Been Saved"
-                        loadEventsFromDatabase()
+//                        loadItemsFromDatabase()
                     }
                 }
 
@@ -103,7 +103,7 @@ class SavedViewModel(private val repository: UserRepository, application: Applic
                     _isLoading.value = false
                     Log.e("getUserSavedClassificationRequest", "Error: ${t.message}")
                     _message.value = "Error Occur, Try Again Later"
-                    loadEventsFromDatabase()
+                    loadItemsFromDatabase()
                 }
             })
         }
