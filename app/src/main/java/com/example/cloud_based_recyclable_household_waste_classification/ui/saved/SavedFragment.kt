@@ -101,10 +101,8 @@ class SavedFragment : Fragment() {
     }
 
     fun isTokenExpired(expirationTime: Int): Boolean {
-        // Waktu saat ini dalam detik (timestamp UNIX)
         val currentTime = System.currentTimeMillis() / 1000
 
-        // Periksa apakah waktu saat ini lebih besar dari waktu kedaluwarsa (exp)
         return currentTime > expirationTime
     }
 

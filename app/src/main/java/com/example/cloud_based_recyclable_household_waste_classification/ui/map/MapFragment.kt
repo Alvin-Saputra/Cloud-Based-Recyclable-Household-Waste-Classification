@@ -23,12 +23,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.cloud_based_recyclable_household_waste_classification.R
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.response.PlaceDetailsResponse
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.retrofit.ApiConfig
-import com.example.cloud_based_recyclable_household_waste_classification.data.remote.retrofit.ApiService
 import com.example.cloud_based_recyclable_household_waste_classification.databinding.FragmentMapBinding
-import com.example.cloud_based_recyclable_household_waste_classification.databinding.SavedFragmentBinding
-import com.example.cloud_based_recyclable_household_waste_classification.ui.register.RegisterViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -41,11 +36,6 @@ import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
@@ -151,6 +141,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             )
             return
         }
+        if (!::mMap.isInitialized) return
         mMap.isMyLocationEnabled = true
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
             location?.let {
@@ -212,7 +203,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             Uri.parse("https://api.whatsapp.com/send?phone=$phoneNumber&text=${Uri.encode(message)}")
         val intent = Intent(Intent.ACTION_VIEW, uri)
 
-        // Pastikan WhatsApp terinstal
         intent.setPackage("com.whatsapp")
 
         try {
